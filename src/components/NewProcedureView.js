@@ -4,12 +4,12 @@ import {
   View
 } from 'react-native';
 
-import NewProcedureView from './NewProcedureView';
+import NewProcedureForm from './NewProcedureForm';
 
-const App = () => {
+const NewProcedureView = () => {
   return (
     <View style={styles.container}>
-      <NewProcedureView/>
+      <NewProcedureForm/>
     </View>
   );
 };
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App;
+export default NewProcedureView;
