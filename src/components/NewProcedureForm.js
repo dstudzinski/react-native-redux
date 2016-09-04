@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {
   StyleSheet,
   View,
@@ -8,9 +8,9 @@ import {
 
 import TextButton from './TextButton';
 
-const NewProcedureForm = () => {
+const NewProcedureForm = props => {
   const onPress = () => {
-    console.log(arguments);
+    props.addProcedure({title: 'title'});
   };
   return (
     <View style={styles.container}>
@@ -27,5 +27,9 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
+NewProcedureForm.propTypes = {
+  addProcedure: PropTypes.func
+};
 
 export default NewProcedureForm;

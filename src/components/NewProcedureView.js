@@ -4,12 +4,14 @@ import {
   View
 } from 'react-native';
 
-import NewProcedureForm from './NewProcedureForm';
+import NewProcedureForm from '../containers/NewProcedureForm';
+import ProceduresList from '../containers/ProceduresList';
 
 const NewProcedureView = () => {
   return (
     <View style={styles.container}>
       <NewProcedureForm/>
+      <ProceduresList/>
     </View>
   );
 };

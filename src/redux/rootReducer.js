@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux';
 
+import procedures from './reducers/procedures';
+
 const rootReducer = combineReducers({
-  ui: store => 'test',
+  procedures
 });
 
 export default rootReducer;
