@@ -1,6 +1,20 @@
 import {connect} from 'react-redux';
+import { actions } from 'react-redux-form';
 
 import NewProcedureForm from '../components/NewProcedureForm';
 import {addProcedure} from '../redux/actions/procedures';
 
-export default connect(null, {addProcedure})(NewProcedureForm);
+const mapStateToProps = state => {
+  return {
+    procedure: state.procedure,
+    procedureForm: state.procedureForm
+  }
+};
+
+const dispatchToProps = {
+  submit: actions.submit,
+  validate: actions.validate,
+  addProcedure
+};
+
+export default connect(mapStateToProps, dispatchToProps)(NewProcedureForm);

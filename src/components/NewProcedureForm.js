@@ -5,19 +5,35 @@ import {
   TextInput,
   Text
 } from 'react-native';
+import { Field } from 'react-redux-form/lib/native';
 
 import TextButton from './TextButton';
 
 const NewProcedureForm = props => {
+  const {addProcedure, submit, validate, procedure, procedureForm} = props;
   const onPress = () => {
-    props.addProcedure({title: 'title'});
+    console.log('onpress');
+    if (procedureForm.valid) {
+      console.log('valid');
+      // move to service
+      const addProcedurePromise = new Promise(resolve => {
+        addProcedure({title: 'title'});
+        resolve();
+      });
+      submit('procedure', addProcedurePromise);
+    } else {
+      console.log('form errors');
+    }
+
   };
+
   return (
     <View style={styles.container}>
       <Text>Add new procedure</Text>
-      <TextInput style={styles.textInput} value={'test'}/>
-      <TextInput style={styles.textInput} value={'test'}/>
-      <TextButton text="Add" onPress={onPress}/>
+        <Field model="procedure.asa">
+          <TextInput/>
+        </Field>
+        <TextButton text="Add" onPress={onPress}/>
     </View>
   );
 };
@@ -29,7 +45,11 @@ const styles = StyleSheet.create({
 });
 
 NewProcedureForm.propTypes = {
-  addProcedure: PropTypes.func
+  procedure: PropTypes.object,
+  procedureForm: PropTypes.object,
+  addProcedure: PropTypes.func,
+  submit: PropTypes.func,
+  validate: PropTypes.func
 };
 
 export default NewProcedureForm;
