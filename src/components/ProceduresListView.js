@@ -4,11 +4,17 @@ import {
   View
 } from 'react-native';
 
-import ProceduresList from './ProceduresList';
+import ProceduresList from '../containers/ProceduresList';
+import TextButton from './TextButton';
 
-const ProceduresListView = () => {
+const ProceduresListView = props => {
+  const onPress = () => {
+    props.navigator.push({name: 'newProcedureView'});
+  };
+
   return (
     <View style={styles.container}>
+      <TextButton text="Add new" onPress={onPress}/>
       <ProceduresList />
     </View>
   );

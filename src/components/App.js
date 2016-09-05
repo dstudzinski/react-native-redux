@@ -1,16 +1,24 @@
 import React from 'react';
 import {
   StyleSheet,
-  View
+  Navigator
 } from 'react-native';
 
-import NewProcedureView from './NewProcedureView';
+import ROUTES from '../routes';
 
 const App = () => {
+  const renderScene = (route, navigator) => {
+    const Component = ROUTES[route.name];
+    return <Component route={route} navigator={navigator}/>;
+  };
+
   return (
-    <View style={styles.container}>
-      <NewProcedureView/>
-    </View>
+    <Navigator
+      style={styles.container}
+      initialRoute={{name: 'newProcedureView'}}
+      renderScene={renderScene}
+      configureScene={() => {return Navigator.SceneConfigs.FloatFromRight;}}
+    />
   );
 };
 

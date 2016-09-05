@@ -3,7 +3,7 @@ import {
 } from '../actionsTypes';
 
 const defaultState = {
-  data: new Map([])
+  data: []
 };
 
 import {handleActions} from 'redux-actions';
@@ -11,10 +11,9 @@ import {handleActions} from 'redux-actions';
 const proceduresReducer = handleActions({
   [ADD_PROCEDURE]: (state, action) => {
     const data = [...state.data];
-    data.push([action.payload._id, action.payload]);
-    const newData = new Map(data);
+    data.push(action.payload);
 
-    return {...state, data: newData};
+    return {...state, data};
   }
 
 }, defaultState);

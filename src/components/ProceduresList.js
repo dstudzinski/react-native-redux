@@ -9,7 +9,7 @@ const ProceduresList = props => {
   const {procedures} = props;
 
   const getProcedures = procedures => {
-    return procedures.map(procedure => {
+    return procedures && procedures.map(procedure => {
       return <Text key={procedure._id}>{JSON.stringify(procedure)}</Text>
     })
   };
