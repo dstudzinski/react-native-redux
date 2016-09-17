@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   StyleSheet,
-  View
+  View,
+  Text
 } from 'react-native';
 
 import NewProcedureForm from '../containers/NewProcedureForm';
@@ -14,6 +15,9 @@ const NewProcedureView = props => {
 
   return (
     <View style={styles.container}>
+      <View style={{backgroundColor: 'red', height: 20}}>
+        <Text>Toolbar</Text>
+      </View>
       <NewProcedureForm/>
       <TextButton text="See all" onPress={onPress}/>
     </View>
