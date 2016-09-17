@@ -14,6 +14,7 @@ const mapStateToProps = state => {
 const dispatchToProps = {
   submit: actions.submit,
   validate: actions.validate,
+  reset: actions.reset,
   addProcedure
 };
 

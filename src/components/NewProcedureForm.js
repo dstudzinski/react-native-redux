@@ -10,21 +10,21 @@ import { Field } from 'react-redux-form/lib/native';
 import TextButton from './TextButton';
 
 const NewProcedureForm = props => {
-  const {addProcedure, submit, validate, procedure, procedureForm} = props;
+  const {addProcedure, submit, validate, procedure, procedureForm, reset} = props;
   const onPress = () => {
     console.log('onpress');
-    if (procedureForm.valid) {
+    // if (procedureForm.valid) {
       console.log('valid');
       // move to service
       const addProcedurePromise = new Promise(resolve => {
         addProcedure({title: 'title'});
+        reset('procedure');
         resolve();
       });
       submit('procedure', addProcedurePromise);
-    } else {
-      console.log('form errors');
-    }
-
+    // } else {
+    //   console.log('form errors');
+    // }
   };
 
   return (
@@ -49,6 +49,7 @@ NewProcedureForm.propTypes = {
   procedureForm: PropTypes.object,
   addProcedure: PropTypes.func,
   submit: PropTypes.func,
+  reset: PropTypes.func,
   validate: PropTypes.func
 };
 
