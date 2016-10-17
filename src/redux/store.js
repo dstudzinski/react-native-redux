@@ -8,13 +8,13 @@ import rootReducer from './rootReducer';
 
 export default function configureStore(initialState) {
   const enhancer = compose(
-    autoRehydrate(),
+    // autoRehydrate(),
     applyMiddleware(thunk),
     devTools({ realtime: true })
   );
   const store = createStore(rootReducer, initialState, enhancer);
 
-  persistStore(store,{storage: AsyncStorage});
+  // persistStore(store,{storage: AsyncStorage});
   devTools.updateStore(store);
 
   return store;

@@ -11,7 +11,7 @@
     "react-native-drawer": "^2.3.0",
     "react-native-uuid": "^1.4.8",
     "react-redux": "^4.4.5",
-    "react-redux-form": "^0.14.5",
+    "react-redux-form": "^1.0.10",
     "redux": "^3.5.2",
     "redux-actions": "^0.12.0",
     "redux-persist": "^3.5.0",

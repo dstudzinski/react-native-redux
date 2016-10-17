@@ -4,7 +4,13 @@ import { modelReducer, formReducer } from 'react-redux-form';
 import procedures from './reducers/procedures';
 
 const procedureInitialState = {
-  asa: ''
+  date: '',
+  age: '',
+  asa: '',
+  emergency: false,
+  typeOfSurgery: '',
+  anesthesiaTechnique: '',
+  typeOfSupervision: ''
 };
 
 const rootReducer = combineReducers({

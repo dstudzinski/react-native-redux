@@ -15,6 +15,8 @@ const dispatchToProps = {
   submit: actions.submit,
   validate: actions.validate,
   reset: actions.reset,
+  setSubmitFailed: actions.setSubmitFailed,
+  setFieldsValidity: actions.setFieldsValidity,
   addProcedure
 };
 
