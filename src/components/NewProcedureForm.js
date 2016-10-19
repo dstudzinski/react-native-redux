@@ -1,6 +1,8 @@
 import React, {PropTypes} from "react";
 import {StyleSheet, View, Text, Picker, DatePickerAndroid} from "react-native";
 import {Form, Control, Errors} from "react-redux-form/lib/native";
+import {Container, Content, List, ListItem, InputGroup, Input, Picker, Item, Icon} from 'native-base';
+
 import TextButton from "./TextButton";
 
 const NewProcedureForm = props => {
@@ -26,43 +28,75 @@ const NewProcedureForm = props => {
 
   return (
     <View style={styles.container}>
-      <Text>Add new procedure</Text>
-        <Form model="procedure">
-          <Control.TextInput
-            model=".date" placeholder="Date"
-            validators={{
-              required: (val) => val && val.length,
-            }}
-          />
-          <Errors model=".date" show="touched" messages={{
-            required: 'Please provide date'
-          }}/>
-          <Control.TextInput model=".age" placeholder="Age" keyboardType="numeric"/>
-          <Control.Picker model=".asa">
-            <Control.Picker.Item label="" value="" />
-            <Control.Picker.Item label="1" value="1" />
-            <Control.Picker.Item label="2" value="2" />
-            <Control.Picker.Item label="3" value="3" />
-            <Control.Picker.Item label="4" value="4" />
-            <Control.Picker.Item label="5" value="5" />
-            <Control.Picker.Item label="6" value="6" />
-          </Control.Picker>
+      <Form model="procedure">
+        <List>
+          <ListItem>
+            <InputGroup>
+              <Control.TextInput
+                model=".date" placeholder="Date"
+                keyboardType="numeric"
+                component={Input}
+                validators={{
+                  required: (val) => !!val
+                }}
+              />
+              <Errors model=".date" show="touched" messages={{
+                required: 'Please provide date'
+              }}/>
+            </InputGroup>
+          </ListItem>
+          <ListItem>
+            <InputGroup>
+              <Control.TextInput
+                model=".age"
+                placeholder="Age"
+                keyboardType="numeric"
+                component={Input}
+                validators={{
+                  required: (val) => !!val
+                }}
+              />
+              <Errors model=".date" show="touched" messages={{
+                required: 'Please provide age'
+              }}/>
+            </InputGroup>
+          </ListItem>
+          <ListItem>
+            <Control.Picker
+              model=".asa"
+              validators={{
+                required: (val) => !!val
+              }}
+              component={Picker}>
+              <Control.Picker.Item label="Select ASA" value="" component={Item}/>
+              <Control.Picker.Item label="1" value="1" component={Item}/>
+              <Control.Picker.Item label="2" value="2" component={Item}/>
+              <Control.Picker.Item label="3" value="3" component={Item}/>
+              <Control.Picker.Item label="4" value="4" component={Item}/>
+              <Control.Picker.Item label="5" value="5" component={Item}/>
+              <Control.Picker.Item label="6" value="6" component={Item}/>
+            </Control.Picker>
+            <Errors model=".date" show="touched" messages={{
+              required: 'Please select ASA'
+            }}/>
+          </ListItem>
           <Control.Switch model=".emergency"/>
           <Control.TextInput model=".typeOfSurgery" placeholder="Type of surgery"/>
           <Control.Picker model=".anesthesiaTechnique">
-            <Control.Picker.Item label="" value="" />
-            <Control.Picker.Item label="og" value="og" />
-            <Control.Picker.Item label="zo" value="zo" />
-            <Control.Picker.Item label="pp" value="pp" />
-            <Control.Picker.Item label="bn" value="bn" />
+            <Control.Picker.Item label="" value=""/>
+            <Control.Picker.Item label="og" value="og"/>
+            <Control.Picker.Item label="zo" value="zo"/>
+            <Control.Picker.Item label="pp" value="pp"/>
+            <Control.Picker.Item label="bn" value="bn"/>
           </Control.Picker>
           <Control.Picker model=".typeOfSupervision">
-            <Control.Picker.Item label="" value="" />
-            <Control.Picker.Item label="sam." value="sam" />
-            <Control.Picker.Item label="współ." value="wspol" />
+            <Control.Picker.Item label="" value=""/>
+            <Control.Picker.Item label="sam." value="sam"/>
+            <Control.Picker.Item label="współ." value="wspol"/>
           </Control.Picker>
           <TextButton text="Add" onPress={onPress}/>
-        </Form>
+        </List>
+      </Form>
     </View>
   );
 };

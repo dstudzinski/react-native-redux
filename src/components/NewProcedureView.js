@@ -4,6 +4,7 @@ import {
   View,
   Text
 } from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Icon } from 'native-base';
 
 import NewProcedureForm from '../containers/NewProcedureForm';
 import TextButton from '../components/TextButton';
@@ -14,13 +15,19 @@ const NewProcedureView = props => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={{backgroundColor: 'red', height: 20}}>
-        <Text>Toolbar</Text>
-      </View>
-      <NewProcedureForm/>
-      <TextButton text="See all" onPress={onPress}/>
-    </View>
+    <Container>
+      <Header>
+        <Button transparent>
+          <Icon name='md-menu' />
+        </Button>
+        <Title>New Procedure</Title>
+      </Header>
+
+      <Content>
+        <NewProcedureForm/>
+        <TextButton text="See all" onPress={onPress} />
+      </Content>
+    </Container>
   );
 };
 
