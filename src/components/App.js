@@ -21,7 +21,7 @@ const App = () => {
     type="overlay"
     content={<Text>some menu items</Text>}
     tapToClose={true}
-    open={true}
+    open={false}
     openDrawerOffset={0.2}
     panCloseMask={0.2}
     closedDrawerOffset={-3}

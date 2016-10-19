@@ -1,5 +1,5 @@
 import React, {PropTypes} from "react";
-import {StyleSheet, View, Text, Picker, DatePickerAndroid} from "react-native";
+import {StyleSheet, View, Text} from "react-native";
 import {Form, Control, Errors} from "react-redux-form/lib/native";
 import {Container, Content, List, ListItem, InputGroup, Input, Picker, Item, Icon} from 'native-base';
 
