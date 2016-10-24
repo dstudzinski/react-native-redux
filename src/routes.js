@@ -1,9 +1,7 @@
-import NewProcedureView from './components/NewProcedureView';
-import ProceduresListView from './components/ProceduresListView';
+import NewProcedureView from './screens/NewProcedureView';
 
-const ROUTES = {
-  newProcedureView: NewProcedureView,
-  proceduresListView: ProceduresListView
+const routes = {
+  newProcedureView: NewProcedureView
 };
 
-export default ROUTES;
+export default routes;
