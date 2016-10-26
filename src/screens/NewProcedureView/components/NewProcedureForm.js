@@ -1,17 +1,17 @@
 // Component
-import React, {PropTypes} from "react";
-import {StyleSheet, View, Text} from "react-native";
+import React from "react";
+import {StyleSheet, View} from "react-native";
 import {Field} from 'redux-form';
-import {List, ListItem} from 'native-base';
+import {List, ListItem, Button} from 'native-base';
 
-import DatePicker from '../../components/form/DatePicker';
-import Input from '../../components/form/Input';
-import Picker from '../../components/form/Picker';
-import Checkbox from '../../components/form/Checkbox';
+import DatePicker from '../../../components/form/DatePicker';
+import Input from '../../../components/form/Input';
+import Picker from '../../../components/form/Picker';
+import Checkbox from '../../../components/form/Checkbox';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  addButton: {
+    marginTop: 50
   }
 });
 
@@ -86,8 +86,10 @@ export const NewProcedureForm = props => {
     }
   ];
 
+  const {handleSubmit} = props;
+
   return (
-    <View style={styles.container}>
+    <View>
       <List>
         <ListItem>
           <Field name="date" placeholder="Date" label={'Date'} component={DatePicker}/>
@@ -102,19 +104,25 @@ export const NewProcedureForm = props => {
           <Field name="emergency" placeholder="Emergency" label={'Emergency'} component={Checkbox}/>
         </ListItem>
         <ListItem>
-          <Field name="typeOfSurgery" placeholder="Type of surgery" items={typeOfSurgery} mode="dropdown" component={Picker}/>
+          <Field name="typeOfSurgery" placeholder="Type of surgery" items={typeOfSurgery} mode="dropdown"
+                 component={Picker}/>
         </ListItem>
         <ListItem>
-          <Field name="typeOfSupervision" placeholder="Type of supervision" items={typeOfSupervision} mode="dropdown" component={Picker}/>
+          <Field name="typeOfSupervision" placeholder="Type of supervision" items={typeOfSupervision} mode="dropdown"
+                 component={Picker}/>
         </ListItem>
       </List>
+      <Button block style={styles.addButton} onPress={handleSubmit}>Add</Button>
     </View>
   );
 };
 
 // Container
-import { reduxForm } from 'redux-form';
+import {reduxForm} from 'redux-form';
+import {newProcedureValidation, submitNewProcedure} from '../services/procedure';
 
 export default reduxForm({
-  form: 'NewProcedureForm'
+  form: 'NewProcedureForm',
+  validate: newProcedureValidation,
+  onSubmit: submitNewProcedure
 })(NewProcedureForm);

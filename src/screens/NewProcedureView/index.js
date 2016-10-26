@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Container, Header, Title, Content, Button, Icon } from 'native-base';
 
-import NewProcedureForm from '../NewProcedureForm';
+import NewProcedureForm from './components/NewProcedureForm';
 
 const NewProcedureView = props => {
   return (

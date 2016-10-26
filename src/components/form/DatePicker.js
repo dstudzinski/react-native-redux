@@ -20,7 +20,7 @@ class DatePicker extends Component {
     this.showPicker = this.showPicker.bind(this);
   }
 
-  showPicker = async (stateKey, options) => {
+  showPicker = async(stateKey, options) => {
     const {input: {onChange}} = this.props;
 
     try {
@@ -35,18 +35,21 @@ class DatePicker extends Component {
   };
 
   render() {
-    const {input: {value}, label} = this.props;
+    const {input: {value}, label, meta: {touched, error}} = this.props;
     const currentValue = value ? value : undefined;
 
     return (
-      <TouchableWithoutFeedback
-        ref={c => this.picker = c}
-        onPress={() => this.showPicker(this.picker, {date: currentValue})}
-      >
-        <View style={styles.view}>
-          <Text style={styles.text}>{value && value.toLocaleDateString() || label}</Text>
-        </View>
-      </TouchableWithoutFeedback>
+      <View>
+        <TouchableWithoutFeedback
+          ref={c => this.picker = c}
+          onPress={() => this.showPicker(this.picker, {date: currentValue})}
+        >
+          <View style={styles.view}>
+            <Text style={styles.text}>{value && value.toLocaleDateString() || label}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+        {touched && (error && <Text>{error}</Text>)}
+      </View>
     )
   }
 }

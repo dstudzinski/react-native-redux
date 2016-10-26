@@ -1,27 +1,28 @@
 import React, {PropTypes} from 'react';
-import {Picker as NativePicker, Item} from 'native-base';
+import {View, Text} from 'react-native';
+import {Picker as NativePicker} from 'native-base';
 
 const Picker = props => {
-  const {input: {onChange, value}, items} = props;
+  const {input: {onChange, value}, items, meta: {touched, error}} = props;
+
+  const Item = NativePicker.Item;
 
   const getItems = items => {
     return items && items.map((item, idx) => {
-        // first item should be label item:
-        if (idx === 0) {
-          return <Item key={item} label={item.label} value={item.value} />
-        }
-
-        return <Item key={item} label={item.label} value={item.value} />
-    });
+        return <Item key={item + idx} label={item.label} value={item.value}/>
+      });
   };
 
   return (
-    <NativePicker
-      {...props}
-      selectedValue={value}
-      onValueChange={onChange}>
-      {getItems(items)}
-    </NativePicker>
+    <View>
+      <NativePicker
+        {...props}
+        selectedValue={value}
+        onValueChange={onChange}>
+        {getItems(items)}
+      </NativePicker>
+      {touched && (error && <Text>{error}</Text>)}
+    </View>
   )
 };
 
