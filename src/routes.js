@@ -1,7 +1,9 @@
 import NewProcedureView from './screens/NewProcedureView';
+import ProceduresListView from './screens/ProceduresListView';
 
 const routes = {
-  newProcedureView: NewProcedureView
+  newProcedureView: NewProcedureView,
+  proceduresListView: ProceduresListView
 };
 
 export default routes;

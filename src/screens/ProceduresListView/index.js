@@ -1,23 +1,20 @@
 import React from 'react';
 import { Container, Header, Title, Content, Button, Icon } from 'native-base';
 
-import NewProcedureForm from './components/NewProcedureForm';
-
-const NewProcedureView = props => {
+const ProceduresListView = props => {
   return (
     <Container>
       <Header>
         <Button transparent>
           <Icon name='md-menu' />
         </Button>
-        <Title>New Procedure</Title>
+        <Title>Procedures List</Title>
       </Header>
 
       <Content>
-        <NewProcedureForm/>
       </Content>
     </Container>
   );
 };
 
-export default NewProcedureView;
+export default ProceduresListView;
