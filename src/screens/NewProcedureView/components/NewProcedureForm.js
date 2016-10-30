@@ -11,7 +11,12 @@ import Checkbox from '../../../components/form/Checkbox';
 
 const styles = StyleSheet.create({
   addButton: {
-    marginTop: 50
+    marginTop: 50,
+    marginLeft: 15,
+    marginRight: 15
+  },
+  list: {
+    marginRight: 15
   }
 });
 
@@ -90,7 +95,7 @@ export const NewProcedureForm = props => {
 
   return (
     <View>
-      <List>
+      <List style={styles.list}>
         <ListItem>
           <Field name="date" placeholder="Date" label={'Date'} component={DatePicker}/>
         </ListItem>

@@ -21,12 +21,8 @@ class App extends Component {
   renderScene(route, navigator) {
     const Component = routes[route.name];
 
-    console.log(route);
-    console.log(navigator);
-    console.log(Component);
-
     // TODO: check if Component -> if not then return default view (NewProcedureView)
-    return <Component route={route} navigator={navigator}/>;
+    return <Component route={route} navigator={navigator} drawer={this._drawer}/>;
   };
 
   navigate(routeName) {
@@ -57,7 +53,6 @@ class App extends Component {
           barStyle="light-content"
         />
         <Navigator
-          style={styles.container}
           initialRoute={{name: 'newProcedureView'}}
           renderScene={this.renderScene}
           configureScene={() => {
@@ -69,11 +64,5 @@ class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
 
 export default App;

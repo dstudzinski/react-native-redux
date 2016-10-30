@@ -1,3 +1,5 @@
+import {addProcedure} from '../../../redux/actions/procedures';
+
 export const newProcedureValidation = (values, props) => {
   const errors = {};
 
@@ -24,6 +26,6 @@ export const newProcedureValidation = (values, props) => {
   return errors;
 };
 
-export const submitNewProcedure = () => {
-  console.log('submitting');
+export const submitNewProcedure = (values, dispatch, props) => {
+  dispatch(addProcedure(values));
 };
