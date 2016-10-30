@@ -27,5 +27,8 @@ export const newProcedureValidation = (values, props) => {
 };
 
 export const submitNewProcedure = (values, dispatch, props) => {
+  const {reset} = props;
+
   dispatch(addProcedure(values));
+  reset();
 };
