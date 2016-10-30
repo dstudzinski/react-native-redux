@@ -8,7 +8,7 @@
   "dependencies": {
     "native-base": "^0.5.9",
     "react": "15.3.1",
-    "react-native": "^0.32.0",
+    "react-native": "^0.36.0",
     "react-native-drawer": "^2.3.0",
     "react-native-uuid": "^1.4.8",
     "react-redux": "^4.4.5",
