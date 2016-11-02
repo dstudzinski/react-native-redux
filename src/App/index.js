@@ -42,7 +42,7 @@ class App extends Component {
         panCloseMask={0.2}
         closedDrawerOffset={-3}
         styles={{
-          drawer: {shadowColor: '#ff0000', shadowOpacity: 0.8, shadowRadius: 3, backgroundColor: '#ff0000'},
+          drawer: {shadowColor: '#ff0000', shadowOpacity: 0.8, shadowRadius: 3, backgroundColor: '#ffffff'},
           main: {paddingLeft: 3}
         }}
         tweenHandler={(ratio) => ({
