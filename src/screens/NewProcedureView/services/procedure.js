@@ -1,4 +1,4 @@
-import {addProcedure} from '../../../redux/actions/procedures';
+import {addProcedure} from '../../../redux/data/procedures/proceduresActions';
 
 export const newProcedureValidation = (values, props) => {
   const errors = {};

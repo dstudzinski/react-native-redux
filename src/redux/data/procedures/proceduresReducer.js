@@ -1,6 +1,6 @@
 import {
   ADD_PROCEDURE
-} from '../actionsTypes';
+} from '../../actionsTypes';
 
 const defaultState = {
   data: []

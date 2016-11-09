@@ -2,7 +2,7 @@ import uuid from 'react-native-uuid';
 
 import {
   ADD_PROCEDURE
-} from '../actionsTypes';
+} from '../../actionsTypes';
 
 import {createAction} from 'redux-actions';
 
