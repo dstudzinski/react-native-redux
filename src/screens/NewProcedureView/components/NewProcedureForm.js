@@ -3,11 +3,13 @@ import React from "react";
 import {StyleSheet, View} from "react-native";
 import {Field} from 'redux-form';
 import {List, ListItem, Button} from 'native-base';
+import I18n from 'react-native-i18n';
 
 import DatePicker from '../../../components/form/DatePicker';
 import Input from '../../../components/form/Input';
 import Picker from '../../../components/form/Picker';
 import Checkbox from '../../../components/form/Checkbox';
+import getConfig from '../../../configs/newProcedureForm';
 
 const styles = StyleSheet.create({
   addButton: {
@@ -21,103 +23,34 @@ const styles = StyleSheet.create({
 });
 
 export const NewProcedureForm = props => {
-  // move to config
-  const asaPickerItems = [
-    {
-      label: 'ASA',
-      value: ''
-    },
-    {
-      label: '1',
-      value: 1
-    },
-    {
-      label: '2',
-      value: 2
-    },
-    {
-      label: '3',
-      value: 3
-    },
-    {
-      label: '4',
-      value: 4
-    },
-    {
-      label: '5',
-      value: 5
-    },
-    {
-      label: '6',
-      value: 6
-    }
-  ];
-
-  const typeOfAnesthesia = [
-    {
-      label: 'Type of anesthesia',
-      value: ''
-    },
-    {
-      label: 'og',
-      value: 1
-    },
-    {
-      label: 'zo',
-      value: 2
-    },
-    {
-      label: 'pp',
-      value: 3
-    },
-    {
-      label: 'bn',
-      value: 4
-    }
-  ];
-
-  const typeOfSupervision = [
-    {
-      label: 'Type of supervision',
-      value: ''
-    },
-    {
-      label: 'sam.',
-      value: 1
-    },
-    {
-      label: 'współ.',
-      value: 2
-    }
-  ];
-
   const {handleSubmit} = props;
+  const config = getConfig();
 
   return (
     <View>
       <List style={styles.list}>
         <ListItem>
-          <Field name="date" placeholder="Date" label={'Date'} component={DatePicker}/>
+          <Field name="date" label={I18n.t('date')} component={DatePicker}/>
         </ListItem>
         <ListItem>
-          <Field name="age" placeholder="Age" keyboardType="numeric" component={Input}/>
+          <Field name="age" placeholder={I18n.t('age')} keyboardType="numeric" component={Input}/>
         </ListItem>
         <ListItem>
-          <Field name="asa" placeholder="Asa" items={asaPickerItems} mode="dropdown" component={Picker}/>
+          <Field name="asa" items={config.asaPickerItems} mode="dropdown" component={Picker}/>
         </ListItem>
         <ListItem>
-          <Field name="emergency" placeholder="Emergency" label={'Emergency'} component={Checkbox}/>
+          <Field name="emergency" label={I18n.t('emergency')} component={Checkbox}/>
         </ListItem>
         <ListItem>
-          <Field name="typeOfAnesthesia" placeholder="Type of anesthesia" items={typeOfAnesthesia} mode="dropdown"
+          <Field name="typeOfAnesthesia" items={config.typeOfAnesthesia} mode="dropdown"
                  component={Picker}/>
         </ListItem>
         <ListItem>
-          <Field name="typeOfSupervision" placeholder="Type of supervision" items={typeOfSupervision} mode="dropdown"
+          <Field name="typeOfSupervision" items={config.typeOfSupervision} mode="dropdown"
                  component={Picker}/>
         </ListItem>
       </List>
-      <Button block style={styles.addButton} onPress={handleSubmit}>Add</Button>
+      <Button block style={styles.addButton} onPress={handleSubmit}>{I18n.t('add')}</Button>
     </View>
   );
 };
