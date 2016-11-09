@@ -6,7 +6,8 @@ export const ProcedureItem = props => {
 
   return (
     <ListItem>
-      <Text>{JSON.stringify(procedure)}</Text>
+      <Text>{procedure.typeOfAnesthesia}</Text>
+      <Text note>{JSON.stringify(procedure)}</Text>
     </ListItem>
   );
 };

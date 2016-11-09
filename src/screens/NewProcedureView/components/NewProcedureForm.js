@@ -53,9 +53,9 @@ export const NewProcedureForm = props => {
     }
   ];
 
-  const typeOfSurgery = [
+  const typeOfAnesthesia = [
     {
-      label: 'Type of surgery',
+      label: 'Type of anesthesia',
       value: ''
     },
     {
@@ -109,7 +109,7 @@ export const NewProcedureForm = props => {
           <Field name="emergency" placeholder="Emergency" label={'Emergency'} component={Checkbox}/>
         </ListItem>
         <ListItem>
-          <Field name="typeOfSurgery" placeholder="Type of surgery" items={typeOfSurgery} mode="dropdown"
+          <Field name="typeOfAnesthesia" placeholder="Type of anesthesia" items={typeOfAnesthesia} mode="dropdown"
                  component={Picker}/>
         </ListItem>
         <ListItem>

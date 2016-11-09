@@ -15,8 +15,8 @@ export const newProcedureValidation = (values, props) => {
     errors.asa = 'Field is required';
   }
 
-  if(!values.typeOfSurgery){
-    errors.typeOfSurgery = 'Field is required';
+  if(!values.typeOfAnesthesia){
+    errors.typeOfAnesthesia = 'Field is required';
   }
 
   if(!values.typeOfSupervision){
