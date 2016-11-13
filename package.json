@@ -6,7 +6,10 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "lodash": "^4.16.6",
     "native-base": "^0.5.9",
+    "pouch-redux-middleware": "^0.5.0",
+    "pouchdb-react-native": "^6.1.20",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-native": "^0.36.0",

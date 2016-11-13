@@ -13,12 +13,18 @@ const styles = StyleSheet.create({
 export const ProcedureItem = props => {
   const {procedure} = props;
 
+  const getDate = procedure => {
+    if (procedure && procedure.date) {
+      return procedure.date.toString();
+    }
+  };
+
   return (
     <ListItem style={styles.listItem}>
       <Thumbnail source={''} />
       <Text>{I18n.t(`typeOfAnesthesia.${procedure.typeOfAnesthesia}`)}</Text>
       <Text note>
-        {procedure.date.toString()}
+        {getDate(procedure)}
       </Text>
       <Text note>
         {I18n.t(`age`)}: {procedure.age} {procedure.emergency ? I18n.t(`emergency`) : undefined} {I18n.t(`typeOfSupervision.${procedure.typeOfSupervision}`)}

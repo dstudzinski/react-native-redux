@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from 'native-base';
+import {List} from 'native-base';
 
 import ProcedureItem from './ProcedureItem';
 
@@ -8,7 +8,9 @@ export const ProceduresList = props => {
 
   const getProcedures = procedures => {
     return procedures && procedures.map((procedure, idx) => {
-        return <ProcedureItem key={idx} procedure={procedure} />
+        if (procedure.date) {
+          return <ProcedureItem key={idx} procedure={procedure}/>
+        }
       })
   };
 

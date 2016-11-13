@@ -1,3 +1,10 @@
+# Install:
+1. clone  
+2. npm install
+3. delete `node_modules/pouch-redux-middleware/.babelrc` file
+
+# Start
+
 1. Run `adb reverse tcp:8081 tcp:8081`
 2. Run `react-native run-android`
 3. Run `Alt+Shift+arrow up for remote monitoring in Redux Devtools`
