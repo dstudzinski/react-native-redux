@@ -23,6 +23,10 @@ export const newProcedureValidation = (values, props) => {
     errors.typeOfSupervision = 'Field is required';
   }
 
+  if(!values.typeOfSurgery){
+    errors.typeOfSurgery = 'Field is required';
+  }
+
   return errors;
 };
 

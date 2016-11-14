@@ -49,6 +49,9 @@ export const NewProcedureForm = props => {
           <Field name="typeOfSupervision" items={config.typeOfSupervision} mode="dropdown"
                  component={Picker}/>
         </ListItem>
+        <ListItem>
+          <Field name="typeOfSurgery" placeholder={I18n.t('typeOfSurgery')} component={Input}/>
+        </ListItem>
       </List>
       <Button block style={styles.addButton} onPress={handleSubmit}>{I18n.t('add')}</Button>
     </View>

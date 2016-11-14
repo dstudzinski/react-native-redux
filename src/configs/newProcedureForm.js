@@ -52,6 +52,10 @@ const getConfig = () => {
     {
       label: I18n.t('typeOfAnesthesia.4'),
       value: 4
+    },
+    {
+      label: I18n.t('typeOfAnesthesia.5'),
+      value: 5
     }
   ];
 
