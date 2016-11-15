@@ -2,11 +2,14 @@ import React from 'react';
 import {StyleSheet} from "react-native";
 import { ListItem, Text, Thumbnail } from 'native-base';
 import I18n from 'react-native-i18n';
+import moment from 'moment-timezone';
 
 const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    paddingTop: 0,
+    paddingBottom: 5
   }
 });
 
@@ -15,7 +18,7 @@ export const ProcedureItem = props => {
 
   const getDate = procedure => {
     if (procedure && procedure.date) {
-      return procedure.date.toString();
+      return moment(procedure.date).format('YYYY-MM-DD');
     }
   };
 
@@ -27,7 +30,15 @@ export const ProcedureItem = props => {
         {getDate(procedure)}
       </Text>
       <Text note>
-        {I18n.t(`age`)}: {procedure.age} {procedure.emergency ? I18n.t(`emergency`) : undefined} {I18n.t(`typeOfSupervision.${procedure.typeOfSupervision}`)}
+        {I18n.t(`age`)}: {procedure.age}{', '}
+        {procedure.emergency ? I18n.t(`emergency`) : undefined}{', '}
+        {I18n.t(`typeOfSupervision.${procedure.typeOfSupervision}`)}
+      </Text>
+      <Text note>
+
+      </Text>
+      <Text note>
+        {procedure.typeOfSurgery}
       </Text>
     </ListItem>
   );
