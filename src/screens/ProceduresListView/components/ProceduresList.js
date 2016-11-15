@@ -1,5 +1,6 @@
 import React from 'react';
 import {List} from 'native-base';
+import {orderBy} from 'lodash';
 
 import ProcedureItem from './ProcedureItem';
 
@@ -7,7 +8,9 @@ export const ProceduresList = props => {
   const {procedures} = props;
 
   const getProcedures = procedures => {
-    return procedures && procedures.map((procedure, idx) => {
+    const sortedProcedures = orderBy(procedures, ['date'], ['desc']);
+
+    return sortedProcedures && sortedProcedures.map((procedure, idx) => {
         if (procedure.date) {
           return <ProcedureItem key={idx} procedure={procedure}/>
         }
