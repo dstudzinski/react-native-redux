@@ -6,9 +6,11 @@ const styles = StyleSheet.create({
   view: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 40,
-    paddingLeft: 5,
-    paddingRight: 5
+    height: 20,
+    paddingLeft: 2.5,
+    paddingRight: 2.5,
+    paddingTop: 0,
+    paddingBottom: 0
   },
   text: {
     paddingLeft: 2.5,

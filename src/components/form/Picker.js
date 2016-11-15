@@ -1,6 +1,17 @@
 import React, {PropTypes} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {Picker as NativePicker} from 'native-base';
+
+const styles = StyleSheet.create({
+  view: {
+    justifyContent: 'center',
+    height: 20,
+    paddingLeft: 2.5,
+    paddingRight: 2.5,
+    paddingTop: 0,
+    paddingBottom: 0
+  }
+});
 
 const Picker = props => {
   const {input: {onChange, value}, items, meta: {touched, error}} = props;
@@ -16,6 +27,7 @@ const Picker = props => {
   return (
     <View>
       <NativePicker
+        style={styles.view}
         {...props}
         selectedValue={value}
         onValueChange={onChange}>

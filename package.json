@@ -12,19 +12,19 @@
     "pouchdb-react-native": "^6.1.20",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-native": "^0.36.0",
+    "react-native": "^0.37.0",
     "react-native-drawer": "^2.3.0",
     "react-native-i18n": "^0.1.1",
     "react-native-uuid": "^1.4.8",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
-    "redux-actions": "^0.12.0",
+    "redux-actions": "^0.13.0",
     "redux-form": "^6.1.1",
-    "redux-persist": "^3.5.0",
+    "redux-persist": "^4.0.0-alpha7",
     "redux-thunk": "^2.1.0",
     "tween-functions": "^1.2.0"
   },
   "devDependencies": {
-    "remote-redux-devtools": "^0.4.7"
+    "remote-redux-devtools": "^0.5.4"
   }
 }

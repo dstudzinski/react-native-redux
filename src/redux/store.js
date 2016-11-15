@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
-import devTools from 'remote-redux-devtools';
+import {composeWithDevTools} from 'remote-redux-devtools';
 import PouchDB from 'pouchdb-react-native';
 import PouchMiddleware from 'pouch-redux-middleware';
 
@@ -35,13 +35,10 @@ export default function configureStore(initialState) {
     }
   });
 
-  const enhancer = compose(
-    applyMiddleware(thunk, pouchMiddleware),
-    devTools({realtime: true})
-  );
-
-  const store = createStore(rootReducer, initialState, enhancer);
-  devTools.updateStore(store);
+  const composeEnhancers = composeWithDevTools({ realtime: true});
+  const store = createStore(rootReducer, initialState, composeEnhancers(
+    applyMiddleware(thunk, pouchMiddleware)
+  ));
 
   return store;
 }

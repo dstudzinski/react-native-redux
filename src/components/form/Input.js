@@ -1,10 +1,24 @@
 import React, {PropTypes, Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {Input as NativeInput} from 'native-base';
+
+const styles = StyleSheet.create({
+  view: {
+    justifyContent: 'center',
+    height: 20,
+    paddingLeft: 2.5,
+    paddingRight: 2.5,
+    paddingTop: 0,
+    paddingBottom: 0
+  }
+});
+
 
 class Input extends Component {
   constructor(props) {
     super(props);
+
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -16,12 +30,22 @@ class Input extends Component {
     }
   }
 
+  onSubmit() {
+    this.nativeInput._textInput.blur();
+    this.nativeInput._textInput.blur();
+  }
+
   render() {
     const {input: {onChange}, meta: {touched, error}} = this.props;
 
     return (
       <View>
-        <NativeInput ref={r => this.nativeInput = r} onChangeText={text => onChange(text)} {...this.props}/>
+        <NativeInput
+          style={styles.view}
+          ref={r => this.nativeInput = r}
+          onSubmitEditing={this.onSubmit}
+          onChangeText={text => onChange(text)}
+          {...this.props}/>
         {touched && (error && <Text>{error}</Text>)}
       </View>
     )

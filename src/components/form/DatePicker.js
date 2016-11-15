@@ -4,7 +4,7 @@ import {StyleSheet, DatePickerAndroid, TouchableWithoutFeedback, Text, View} fro
 const styles = StyleSheet.create({
   view: {
     justifyContent: 'center',
-    height: 40,
+    height: 20,
     paddingLeft: 2.5,
     paddingRight: 2.5
   },
