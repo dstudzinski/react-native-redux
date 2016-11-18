@@ -53,12 +53,12 @@ class App extends Component {
           barStyle="light-content"
         />
         <Navigator
+          ref={c => this._navigator = c}
           initialRoute={{name: 'newProcedureView'}}
           renderScene={this.renderScene}
           configureScene={() => {
             return Navigator.SceneConfigs.FadeAndroid;
           }}
-          ref={c => this._navigator = c}
         />
       </Drawer>
     );

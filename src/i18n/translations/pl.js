@@ -1,6 +1,6 @@
 const pl = {
   add: 'Dodaj',
-  age: 'Wiek pacjenta',
+  age: 'Wiek',
   asa: {
     label: 'ASA',
     1: '1',
