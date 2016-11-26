@@ -6,7 +6,7 @@ const configureI18n = () => {
   // Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
   I18n.fallbacks = true;
   I18n.defaultLocale = 'pl';
-  I18n.locale = 'en';
+  I18n.locale = 'pl';
 
   I18n.translations = {
     pl

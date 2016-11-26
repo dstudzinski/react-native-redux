@@ -7,14 +7,11 @@ import {
   View
 } from 'react-native';
 import Drawer from 'react-native-drawer';
-
-import {Container, Header, Title, Content, Button, Icon} from 'native-base';
-
+import I18n from 'react-native-i18n';
+import {Header, Title, Button, Icon} from 'native-base';
 
 import routes from '../routes';
 import Sidebar from '../components/Sidebar';
-
-import NewProcedureView from '../screens/NewProcedureView';
 
 const {
   Transitioner: NavigationTransitioner,
@@ -27,31 +24,10 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-// function createReducer(initialState) {
-//   return (currentState = initialState, action) => {
-//     const {type, key} = action;
-//     switch (type) {
-//       case 'push':
-//         return NavigationStateUtils.push(currentState, {key});
-//       case 'pop':
-//         return currentState.index > 0 ?
-//           NavigationStateUtils.pop(currentState) :
-//           currentState;
-//       default:
-//         return currentState;
-//     }
-//   }
-// }
-// const NavReducer = createReducer({
-//   index: 0,
-//   key: 'App',
-//   routes: [{key: 'newProcedureView'}]
-// });
 
 export class App extends Component {
-
   backAction() {
-
+    popState(); //TODO: pass valid value
   }
 
   render() {
@@ -96,7 +72,7 @@ export class App extends Component {
                 }}>
                   <Icon name='md-menu'/>
                 </Button>
-                <Title>{props.scene.route.title}</Title>
+                <Title>{I18n.t(props.scene.route.title)}</Title>
               </Header>
             </View>
           </Drawer>
@@ -116,10 +92,12 @@ export class App extends Component {
 // Container
 import {connect} from 'react-redux';
 
+import {popState} from '../redux/data/navigationState/actions';
+
 const mapStateToProps = state => {
   return {
     navigationState: state.navigationState
   }
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps,{popState})(App);

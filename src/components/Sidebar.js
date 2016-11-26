@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Content, Text, List, ListItem, Icon, View} from 'native-base';
+import I18n from 'react-native-i18n';
+import {Content, Text, List, ListItem, View} from 'native-base';
 
 import routes from '../routes';
 
@@ -9,12 +10,12 @@ export const Sidebar = props => {
       <List>
         <ListItem button onPress={() => props.sidebarState(routes['newProcedureView'])}>
           <View>
-            <Text>New Procedure</Text>
+            <Text>{I18n.t(routes['newProcedureView'].title)}</Text>
           </View>
         </ListItem>
         <ListItem button onPress={() => props.sidebarState(routes['proceduresListView'])}>
           <View>
-            <Text>Procedures List</Text>
+            <Text>{I18n.t(routes['proceduresListView'].title)}</Text>
           </View>
         </ListItem>
       </List>

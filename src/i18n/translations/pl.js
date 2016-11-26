@@ -25,7 +25,11 @@ const pl = {
     1: 'sam.',
     2: 'współ.'
   },
-  typeOfSurgery: 'Typ zabiegu'
+  typeOfSurgery: 'Typ zabiegu',
+  routes: {
+    newProcedureView: 'Nowa procedura',
+    proceduresListView: 'Lista procedur'
+  }
 };
 
 export default pl;
