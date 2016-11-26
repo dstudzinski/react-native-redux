@@ -1,24 +1,12 @@
 import React from 'react';
-import {Container, Header, Title, Content, Button, Icon, Fab} from 'native-base';
+import {Container, Content, Icon, Fab} from 'native-base';
 
 import ProceduresList from './components/ProceduresList';
+import routes from '../../routes';
 
-const ProceduresListView = props => {
-  const {navigator} = props;
-
-  const goBack = () => {
-    navigator.pop();
-  };
-
+export const ProceduresListView = props => {
   return (
     <Container>
-      <Header>
-        <Button transparent onPress={goBack}>
-          <Icon name='md-arrow-back'/>
-        </Button>
-        <Title>Procedures List</Title>
-      </Header>
-
       <Content>
         <ProceduresList/>
       </Content>
@@ -28,7 +16,7 @@ const ProceduresListView = props => {
         containerStyle={{marginLeft: 10}}
         style={{backgroundColor: '#5067FF'}}
         position="bottomRight"
-        onPress={() => {}}
+        onPress={() => {props.sidebarState(routes['newProcedureView'])}}
       >
         <Icon name="md-add"/>
       </Fab>
@@ -36,4 +24,10 @@ const ProceduresListView = props => {
   );
 };
 
-export default ProceduresListView;
+
+// Container
+import {connect} from 'react-redux';
+
+import {sidebarState} from '../../redux/data/navigationState/actions';
+
+export default connect(null, {sidebarState})(ProceduresListView);
