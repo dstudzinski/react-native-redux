@@ -7,16 +7,14 @@ import {
   View
 } from 'react-native';
 import Drawer from 'react-native-drawer';
-import I18n from 'react-native-i18n';
-import {Header, Title, Button, Icon} from 'native-base';
 
 import routes from '../routes';
 import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 
 const {
   Transitioner: NavigationTransitioner,
-  Card: NavigationCard,
-  Header: NavigationHeader
+  Card: NavigationCard
 } = NavigationExperimental;
 
 const styles = StyleSheet.create({
@@ -66,14 +64,7 @@ export class App extends Component {
                 key={props.scene.route.key}
                 style={{marginTop: 56}}
               />
-              <Header>
-                <Button transparent onPress={() => {
-                  this.drawer.open()
-                }}>
-                  <Icon name='md-menu'/>
-                </Button>
-                <Title>{I18n.t(props.scene.route.title)}</Title>
-              </Header>
+              <Header scene={props.scene} drawer={this.drawer}/>
             </View>
           </Drawer>
         )}
