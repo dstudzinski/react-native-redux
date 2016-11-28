@@ -31,7 +31,8 @@ export const ProcedureItem = props => {
       </Text>
       <Text note>
         {I18n.t(`age`)}: {procedure.age}{', '}
-        {procedure.emergency ? I18n.t(`emergency`) : undefined}{', '}
+        {procedure.emergency ? I18n.t(`emergency`) + ', ' : undefined}
+        {'ASA: ' + procedure.asa + ', '}
         {I18n.t(`typeOfSupervision.${procedure.typeOfSupervision}`)}
       </Text>
       <Text note>
