@@ -22,3 +22,7 @@ Configure your app to connect to the local dev server via Wi-Fi
 6. Go to Debug server host for device.
 7. Type in your machine's IP address and the port of the local dev server (e.g. 10.0.1.1:8081). On Mac, you can find the IP address in System Preferences / Network. On Windows, open the command prompt and type ipconfig to find your machine's IP address (more info).
 8. Go back to the Developer menu and select Reload JS.
+
+# Upgrade RN:
+https://facebook.github.io/react-native/docs/upgrading.html  
+later: `react-native link react-native-vector-icons`
