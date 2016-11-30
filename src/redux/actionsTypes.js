@@ -7,3 +7,8 @@ export const UPDATE_PROCEDURE = 'UPDATE_PROCEDURE';
 export const PUSH_STATE = 'PUSH_STATE';
 export const POP_STATE = 'POP_STATE';
 export const SIDEBAR_STATE = 'SIDEBAR_STATE';
+
+// database
+export const SET_SYNC_STATE = 'SYNC_STATE';
+export const SET_LOGIN_STATE = 'LOGIN_STATE';
+export const SET_USER = 'SET_USER';

@@ -1,23 +1,14 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'remote-redux-devtools';
-import PouchDB from 'pouchdb-react-native';
 import PouchMiddleware from 'pouch-redux-middleware';
 
 import rootReducer from './rootReducer';
 import {addProcedure, removeProcedure, updateProcedure} from './data/procedures/actions';
+import {getLocalDatabase} from '../services/database';
 
 export default function configureStore(initialState) {
-  const remoteDBUrl = 'http://192.168.0.14:5984/procedures';
-
-  // new PouchDB('procedures').destroy();
-  const localDB = new PouchDB('procedures');
-  const remoteDB = new PouchDB(remoteDBUrl);
-
-  localDB.sync(remoteDB, {
-    live: true,
-    retry: true
-  });
+  const localDB = getLocalDatabase();
 
   const pouchMiddleware = PouchMiddleware({
     path: '/procedures/data',

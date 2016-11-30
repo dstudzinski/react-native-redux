@@ -53,7 +53,7 @@ export class App extends Component {
               main: {opacity: (2 - ratio) / 2}
             })}>
             <StatusBar
-              backgroundColor="blue"
+              backgroundColor="#5067FF"
               barStyle="light-content"
             />
             <View style={styles.container}>
@@ -75,7 +75,7 @@ export class App extends Component {
   renderScene({scene}) {
     const {route} = scene;
 
-    const cmp = routes[route.key].component; // TODO: how to pass props to class components (for func it will by just prop)
+    const cmp = routes[route.key].component;
     return React.createElement(cmp);
   }
 }

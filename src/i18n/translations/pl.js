@@ -12,6 +12,7 @@ const pl = {
   },
   date: 'Data',
   emergency: 'Pilne',
+  fieldIsRequired: 'Pole wymagane',
   typeOfAnesthesia: {
     label: 'Typ znieczulenia',
     1: 'og',
@@ -27,9 +28,12 @@ const pl = {
   },
   typeOfSurgery: 'Typ zabiegu',
   routes: {
+    settingsView: 'Ustawienia',
     newProcedureView: 'Nowa procedura',
     proceduresListView: 'Lista procedur'
-  }
+  },
+  login: 'Login',
+  password: 'Hasło'
 };
 
 export default pl;

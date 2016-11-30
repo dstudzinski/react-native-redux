@@ -5,8 +5,8 @@ import configureI18n from './i18n';
 import App from './App'
 import createStore from './redux/store';
 
-const store = createStore();
 configureI18n();
+const store = createStore();
 
 class Main extends Component {
   render() {

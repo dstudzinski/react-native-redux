@@ -18,6 +18,11 @@ export const Sidebar = props => {
             <Text>{I18n.t(routes['proceduresListView'].title)}</Text>
           </View>
         </ListItem>
+        <ListItem button onPress={() => props.sidebarState(routes['settingsView'])}>
+          <View>
+            <Text>{I18n.t(routes['settingsView'].title)}</Text>
+          </View>
+        </ListItem>
       </List>
     </Content>
   );

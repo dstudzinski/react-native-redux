@@ -2521,6 +2521,10 @@ joi@^6.6.1:
     moment "2.x.x"
     topo "1.x.x"
 
+js-extend@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/js-extend/-/js-extend-1.0.1.tgz#50551ab1ac71d4bb302e4040ebbe59033ba2b1f7"
+
 js-tokens@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-2.0.0.tgz#79903f5563ee778cc1162e6dcf1a0027c97f9cb5"
@@ -2930,13 +2934,13 @@ mime-db@~1.23.0:
   version "1.23.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.23.0.tgz#a31b4070adaea27d732ea333740a64d0ec9a6659"
 
-mime-types@2.1.11, mime-types@~2.1.7, mime-types@~2.1.9:
+mime-types@2.1.11, mime-types@~2.1.9:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.11.tgz#c259c471bda808a85d6cd193b430a5fae4473b3c"
   dependencies:
     mime-db "~1.23.0"
 
-mime-types@^2.1.11, mime-types@~2.1.11, mime-types@~2.1.13, mime-types@~2.1.6:
+mime-types@^2.1.11, mime-types@~2.1.11, mime-types@~2.1.13, mime-types@~2.1.6, mime-types@~2.1.7:
   version "2.1.13"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.13.tgz#e07aaa9c6c6b9a7ca3012c69003ad25a39e92a88"
   dependencies:
@@ -3358,6 +3362,17 @@ pouchdb-adapter-utils@6.0.7:
     pouchdb-merge "6.0.7"
     pouchdb-utils "6.0.7"
 
+pouchdb-ajax@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/pouchdb-ajax/-/pouchdb-ajax-6.0.3.tgz#1a915527b30ab37791a1ea3d7c270a105909c1f6"
+  dependencies:
+    js-extend "1.0.1"
+    pouchdb-binary-utils "6.0.3"
+    pouchdb-errors "6.0.3"
+    pouchdb-promise "6.0.3"
+    pouchdb-utils "6.0.3"
+    request "2.74.0"
+
 pouchdb-ajax@6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/pouchdb-ajax/-/pouchdb-ajax-6.0.7.tgz#7d2d7ae429075fc581b44329eb4999ebe6e9595a"
@@ -3367,6 +3382,21 @@ pouchdb-ajax@6.0.7:
     pouchdb-promise "6.0.7"
     pouchdb-utils "6.0.7"
     request "2.74.0"
+
+pouchdb-authentication@^0.5.5:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/pouchdb-authentication/-/pouchdb-authentication-0.5.5.tgz#31aec11fcf91afc346eab5902b0bce3978fe8501"
+  dependencies:
+    inherits "2.0.1"
+    pouchdb-ajax "6.0.3"
+    pouchdb-extend "0.1.2"
+    pouchdb-promise "6.0.3"
+    pouchdb-utils "6.0.3"
+    url-join "1.1.0"
+
+pouchdb-binary-utils@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/pouchdb-binary-utils/-/pouchdb-binary-utils-6.0.3.tgz#5978b0bde263a2ede0230ca26cf54468541c14fb"
 
 pouchdb-binary-utils@6.0.7:
   version "6.0.7"
@@ -3383,6 +3413,10 @@ pouchdb-checkpointer@6.0.7:
 pouchdb-collate@6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/pouchdb-collate/-/pouchdb-collate-6.0.7.tgz#8d06099a8d8252203aefe53ee9d4fa4998dbff6c"
+
+pouchdb-collections@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/pouchdb-collections/-/pouchdb-collections-6.0.3.tgz#049a194092d8ba97161733b6faec269a1d4c848d"
 
 pouchdb-collections@6.0.7:
   version "6.0.7"
@@ -3402,11 +3436,21 @@ pouchdb-core@6.0.7:
     pouchdb-utils "6.0.7"
     scope-eval "0.0.3"
 
+pouchdb-errors@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/pouchdb-errors/-/pouchdb-errors-6.0.3.tgz#975c2e2acd472bd0112d5220695e660479e4dcc4"
+  dependencies:
+    inherits "2.0.1"
+
 pouchdb-errors@6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/pouchdb-errors/-/pouchdb-errors-6.0.7.tgz#768cde7a40006abbb8c209435207a4c7208a47d9"
   dependencies:
     inherits "2.0.3"
+
+pouchdb-extend@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/pouchdb-extend/-/pouchdb-extend-0.1.2.tgz#d1ce511bf704ed2e29f7bf428a416acfffa124b8"
 
 pouchdb-generate-replication-id@6.0.7:
   version "6.0.7"
@@ -3435,6 +3479,17 @@ pouchdb-mapreduce@6.0.7:
     pouchdb-utils "6.0.7"
     scope-eval "0.0.3"
 
+pouchdb-md5@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/pouchdb-md5/-/pouchdb-md5-6.0.3.tgz#b43f869ae9dfe0d0a9b71335ac8182b2ff8239db"
+  dependencies:
+    pouchdb-binary-utils "6.0.3"
+    pouchdb-collections "6.0.3"
+    pouchdb-errors "6.0.3"
+    pouchdb-promise "6.0.3"
+    pouchdb-utils "6.0.3"
+    spark-md5 "2.0.2"
+
 pouchdb-md5@6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/pouchdb-md5/-/pouchdb-md5-6.0.7.tgz#aaab30989c2515d14f0329f41cc7b1346602f2ba"
@@ -3445,6 +3500,12 @@ pouchdb-md5@6.0.7:
 pouchdb-merge@6.0.7:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/pouchdb-merge/-/pouchdb-merge-6.0.7.tgz#0fcc5ca0e9f1c55164abb674f2003b1d0ace11a5"
+
+pouchdb-promise@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/pouchdb-promise/-/pouchdb-promise-6.0.3.tgz#c6dc3fa63c8e57d931a605a3692ca7712dd9417e"
+  dependencies:
+    lie "3.1.0"
 
 pouchdb-promise@6.0.7:
   version "6.0.7"
@@ -3472,6 +3533,19 @@ pouchdb-replication@6.0.7:
     pouchdb-generate-replication-id "6.0.7"
     pouchdb-promise "6.0.7"
     pouchdb-utils "6.0.7"
+
+pouchdb-utils@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/pouchdb-utils/-/pouchdb-utils-6.0.3.tgz#87f27df62d4f36d6627672b0b3a0ad478c28b093"
+  dependencies:
+    argsarray "0.0.1"
+    debug "2.2.0"
+    inherits "2.0.1"
+    pouchdb-binary-utils "6.0.3"
+    pouchdb-collections "6.0.3"
+    pouchdb-errors "6.0.3"
+    pouchdb-md5 "6.0.3"
+    pouchdb-promise "6.0.3"
 
 pouchdb-utils@6.0.7:
   version "6.0.7"
@@ -4621,6 +4695,10 @@ untildify@^2.0.0:
 unzip-response@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-1.0.2.tgz#b984f0877fc0a89c2c773cc1ef7b5b232b5b06fe"
+
+url-join@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/url-join/-/url-join-1.1.0.tgz#741c6c2f4596c4830d6718460920d0c92202dc78"
 
 url-parse-lax@^1.0.0:
   version "1.0.0"
