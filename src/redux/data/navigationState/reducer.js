@@ -5,7 +5,7 @@ import {
   POP_STATE,
   SIDEBAR_STATE
 } from '../../actionsTypes';
-import {defaultRoute} from '../../../routes';
+import {defaultRoute} from '../../../configs/routes';
 
 const defaultState = {
   index: 0,

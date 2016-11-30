@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, Content, Icon, Fab} from 'native-base';
 
 import ProceduresList from './components/ProceduresList';
-import routes from '../../routes';
+import routes from '../../configs/routes';
 
 export const ProceduresListView = props => {
   return (

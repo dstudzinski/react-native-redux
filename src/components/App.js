@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import Drawer from 'react-native-drawer';
 
-import routes from '../routes';
-import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
+import routes from '../configs/routes';
+import Sidebar from './Sidebar';
+import Header from './Header';
 
 const {
   Transitioner: NavigationTransitioner,

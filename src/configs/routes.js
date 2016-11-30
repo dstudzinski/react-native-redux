@@ -1,6 +1,6 @@
-import SettingsView from './screens/SettingsView';
-import NewProcedureView from './screens/NewProcedureView';
-import ProceduresListView from './screens/ProceduresListView';
+import SettingsView from '../screens/SettingsView';
+import NewProcedureView from '../screens/NewProcedureView';
+import ProceduresListView from '../screens/ProceduresListView';
 
 const routes = {
   settingsView: {key: 'settingsView', title: 'routes.settingsView', component: SettingsView},

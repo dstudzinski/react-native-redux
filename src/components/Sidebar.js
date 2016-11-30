@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import I18n from 'react-native-i18n';
 import {Content, Text, List, ListItem, View} from 'native-base';
 
-import routes from '../routes';
+import routes from '../configs/routes';
 
 export const Sidebar = props => {
   return (
