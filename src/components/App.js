@@ -11,6 +11,7 @@ import Drawer from 'react-native-drawer';
 import routes from '../configs/routes';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import {USER_LOGGED_IN} from '../configs/constants';
 
 const {
   Transitioner: NavigationTransitioner,
@@ -24,8 +25,29 @@ const styles = StyleSheet.create({
 });
 
 export class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillUpdate(nextProps) {
+    const {user: {name, password}, loginState, setupRemoteDatabaseConnection} = this.props;
+    const {user: {name: newName, password: newPassword}, loginState: newLoginState} = nextProps;
+
+    if(newLoginState === USER_LOGGED_IN && newName && newName !== name && newPassword && newPassword !== password) {
+      setupRemoteDatabaseConnection(newName, newPassword);
+    }
+  }
+
   backAction() {
-    popState(); //TODO: pass valid value
+    this.props.popState(); //TODO: pass valid value
+  }
+
+  componentDidMount() {
+    const {user: {name, password}, loginState, setupRemoteDatabaseConnection} = this.props;
+    if(loginState === USER_LOGGED_IN && name && password) {
+      console.warn('frist login');
+      setupRemoteDatabaseConnection(name, password);
+    }
   }
 
   render() {
@@ -84,11 +106,14 @@ export class App extends Component {
 import {connect} from 'react-redux';
 
 import {popState} from '../redux/data/navigationState/actions';
+import {setupRemoteDatabaseConnection} from '../services/database';
 
 const mapStateToProps = state => {
   return {
-    navigationState: state.navigationState
+    navigationState: state.navigationState,
+    user: state.database.user,
+    loginState: state.database.loginState
   }
 };
 
-export default connect(mapStateToProps,{popState})(App);
+export default connect(mapStateToProps,{popState, setupRemoteDatabaseConnection})(App);

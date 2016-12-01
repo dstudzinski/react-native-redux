@@ -19,7 +19,7 @@ export const loginValidation = (values, props) => {
 export const submitLogin = (values, dispatch, props) => {
   const {reset} = props;
 
-  setupRemoteDatabaseConnection(values.login, values.password)
+  dispatch(setupRemoteDatabaseConnection(values.login, values.password))
     .then(result => {
       // set that user is logged in
       reset();
@@ -27,6 +27,5 @@ export const submitLogin = (values, dispatch, props) => {
     .catch(err => {
       // show message that login unsuccessful
       // do not clear form
-      console.error('something wrong');
     })
 };

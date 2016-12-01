@@ -76,7 +76,7 @@ export function loginToDatabase(name, password) {
           dispatch(setLoginState(USER_LOGGING_FAILED));
           reject(err);
         } else {
-          dispatch(setUser({username: name}));
+          dispatch(setUser({name, password}));
           dispatch(setLoginState(USER_LOGGED_IN));
           resolve(response);
         }
