@@ -1,7 +1,7 @@
 import PouchDB from 'pouchdb-react-native';
-// import PouchDBAuthentication from 'pouchdb-authentication';
-// PouchDB.plugin(PouchDBAuthentication);
-PouchDB.plugin(require('pouchdb-authentication'));
+import PouchDBAuthentication from 'pouchdb-authentication';
+
+PouchDB.plugin(PouchDBAuthentication);
 
 import {
   setSyncState,
@@ -74,6 +74,7 @@ export function loginToDatabase(name, password) {
       remoteDB.login(name, password, ajaxOpts, (err, response) => {
         if (err) {
           dispatch(setLoginState(USER_LOGGING_FAILED));
+          console.warn(err);
           reject(err);
         } else {
           dispatch(setUser({name, password}));

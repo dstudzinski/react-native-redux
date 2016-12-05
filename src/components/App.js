@@ -30,7 +30,7 @@ export class App extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    const {user: {name, password}, loginState, setupRemoteDatabaseConnection} = this.props;
+    const {user: {name, password}, setupRemoteDatabaseConnection} = this.props;
     const {user: {name: newName, password: newPassword}, loginState: newLoginState} = nextProps;
 
     if(newLoginState === USER_LOGGED_IN && newName && newName !== name && newPassword && newPassword !== password) {
