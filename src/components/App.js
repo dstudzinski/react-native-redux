@@ -43,10 +43,9 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    const {user: {name, password}, loginState, setupRemoteDatabaseConnection} = this.props;
-    if(loginState === USER_LOGGED_IN && name && password) {
-      console.warn('frist login');
-      setupRemoteDatabaseConnection(name, password);
+    const {user: {name, token}, loginState, setSync} = this.props;
+    if(loginState === USER_LOGGED_IN && name && token) {
+      setSync();
     }
   }
 
@@ -106,7 +105,7 @@ export class App extends Component {
 import {connect} from 'react-redux';
 
 import {popState} from '../redux/data/navigationState/actions';
-import {setupRemoteDatabaseConnection} from '../services/database';
+import {setSync} from '../services/database';
 
 const mapStateToProps = state => {
   return {
@@ -116,4 +115,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps,{popState, setupRemoteDatabaseConnection})(App);
+export default connect(mapStateToProps,{popState, setSync})(App);

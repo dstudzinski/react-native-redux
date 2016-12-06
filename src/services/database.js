@@ -28,23 +28,25 @@ let localDB;
 let remoteDB;
 let databaseSync;
 
-export function getLocalDatabase() {
-  if (localDB) {
-    return localDB;
-  }
+const remoteDBUrl = 'http://192.168.0.14:5050'; //TODO: move to config
 
+export function getLocalDatabase() {
   // new PouchDB('procedures').destroy();
   localDB = new PouchDB('procedures');
   return localDB;
 }
 
-export function getRemoteDatabase() {
-  if (remoteDB) {
-    return remoteDB;
-  }
-
-  const remoteDBUrl = 'http://192.168.0.14:5984/procedures'; //TODO: move to config, database name should be dynamic
-  remoteDB = new PouchDB(remoteDBUrl, {skipSetup: true});
+export function getRemoteDatabase(cookie) {
+  const databaseUrl = remoteDBUrl + '/procedures'; //TODO: database name should be dynamic
+  const options = {
+    skipSetup: true,
+    ajax: {
+      headers: {
+        cookie
+      }
+    }
+  };
+  remoteDB = new PouchDB(databaseUrl, options);
   return remoteDB;
 }
 
@@ -59,29 +61,21 @@ export function setupRemoteDatabaseConnection(name, password) {
 
 export function loginToDatabase(name, password) {
   return dispatch => {
-    const ajaxOpts = {
-      ajax: {
-        headers: {
-          Authorization: 'Basic ' + window.btoa(name + ':' + password)
-        }
-      }
-    };
-
-    const remoteDB = getRemoteDatabase();
-
-    return new Promise((resolve, reject) => {
-      dispatch(setLoginState(USER_LOGGING_IN));
-      remoteDB.login(name, password, ajaxOpts, (err, response) => {
-        if (err) {
-          dispatch(setLoginState(USER_LOGGING_FAILED));
-          console.warn(err);
-          reject(err);
-        } else {
-          dispatch(setUser({name, password}));
-          dispatch(setLoginState(USER_LOGGED_IN));
-          resolve(response);
-        }
-      });
+    return fetch(remoteDBUrl + '/_session', {
+      method : 'POST',
+      headers : {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + window.btoa(name + ':' + password)
+      },
+      body : JSON.stringify({name, password})
+    }).then(response => {
+      const token = response.headers.map['x-couchdb-cookie'][0];
+      dispatch(setUser({name, token}));
+      dispatch(setLoginState(USER_LOGGED_IN));
+      return response;
+    }).catch(err => {
+      dispatch(setLoginState(USER_LOGGING_FAILED));
+      return err;
     });
   }
 }
@@ -89,7 +83,7 @@ export function loginToDatabase(name, password) {
 export function logoutFromDatabase() {
   return dispatch => {
     const remoteDB = getRemoteDatabase();
-
+    // TODO: use fetch and remove pouchdb-authentication dependency
     return new Promise((resolve, reject) => {
       dispatch(setLoginState(USER_LOGGING_OUT));
       remoteDB.logout((err, response) => {
@@ -105,9 +99,10 @@ export function logoutFromDatabase() {
 }
 
 export function setSync() {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const userToken = getState().database.user.token;
     const localDB = getLocalDatabase();
-    const remoteDB = getRemoteDatabase();
+    const remoteDB = getRemoteDatabase(userToken);
 
     dispatch(cancelSync());
 
@@ -133,6 +128,7 @@ export function setSync() {
       dispatch(setSyncState(SYNC_COMPLETE));
     }).on('error', function (err) {
       // handle error
+      console.warn(JSON.stringify(err));
       dispatch(setSyncState(SYNC_ERROR));
     });
   }

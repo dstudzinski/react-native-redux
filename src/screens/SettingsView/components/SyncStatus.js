@@ -6,6 +6,7 @@ const SyncStatus = props => {
     <View>
       <Text>Sync status: {props.syncState}</Text>
       <Text>Login status: {props.loginState}</Text>
+      <Text>User token: {props.userToken}</Text>
     </View>
   )
 };
@@ -20,7 +21,8 @@ import {connect} from 'react-redux';
 const mapStateToProps = state => {
   return {
     syncState: state.database.syncState,
-    loginState: state.database.loginState
+    loginState: state.database.loginState,
+    userToken: state.database.user.token,
   }
 };
 
