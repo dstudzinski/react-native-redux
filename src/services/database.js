@@ -2,6 +2,7 @@ import PouchDB from 'pouchdb-react-native';
 import PouchDBAuthentication from 'pouchdb-authentication';
 
 PouchDB.plugin(PouchDBAuthentication);
+// PouchDB.debug.enable('*');
 
 import {
   setSyncState,
@@ -28,7 +29,8 @@ let localDB;
 let remoteDB;
 let databaseSync;
 
-const remoteDBUrl = 'http://192.168.0.14:5050'; //TODO: move to config
+const remoteDBUrl = 'http://192.168.0.14:5984'; //TODO: move to config
+const ApiUrl = 'http://192.168.0.14:5050'; //TODO: move to config
 
 export function getLocalDatabase() {
   // new PouchDB('procedures').destroy();
@@ -36,13 +38,18 @@ export function getLocalDatabase() {
   return localDB;
 }
 
-export function getRemoteDatabase(cookie) {
-  const databaseUrl = remoteDBUrl + '/procedures'; //TODO: database name should be dynamic
+export function getRemoteDatabase(parameters) {
+  const {consumerKey, consumerSecret, token, secret, databaseName} = parameters;
+  const databaseUrl = remoteDBUrl + '/' + databaseName; //TODO: database name should be dynamic
+
+  console.log('database url:', databaseUrl);
+  // TODO: generate Authorization header with OAuth data
   const options = {
     skipSetup: true,
     ajax: {
       headers: {
-        cookie
+        // 'Authorization': 'OAuth oauth_consumer_key="consumerKey1",oauth_token="a9df264e-8445-43fe-bf66-87150caab1ba",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1481653127",oauth_nonce="vnQ9HE",oauth_version="1.0",oauth_signature="OBkuJfREIaPLMN6VXIkLFkkyKRA%3D"'
+        'Authorization': 'Basic YmVhdGE6YmVhdGE='
       }
     }
   };
@@ -61,18 +68,19 @@ export function setupRemoteDatabaseConnection(name, password) {
 
 export function loginToDatabase(name, password) {
   return dispatch => {
-    return fetch(remoteDBUrl + '/_session', {
+    return fetch(ApiUrl + '/login', {
       method : 'POST',
       headers : {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + window.btoa(name + ':' + password)
-      },
-      body : JSON.stringify({name, password})
-    }).then(response => {
-      const token = response.headers.map['x-couchdb-cookie'][0];
-      dispatch(setUser({name, token}));
+      }
+    }).then(response => response.json())
+      .then(data => {
+      const token = data.token;
+      const secret = data.secret;
+      dispatch(setUser({name, password, token, secret}));
       dispatch(setLoginState(USER_LOGGED_IN));
-      return response;
+      return data;
     }).catch(err => {
       dispatch(setLoginState(USER_LOGGING_FAILED));
       return err;
@@ -100,36 +108,69 @@ export function logoutFromDatabase() {
 
 export function setSync() {
   return (dispatch, getState) => {
-    const userToken = getState().database.user.token;
+    const token = getState().database.user.token;
+    const secret = getState().database.user.secret;
+    const consumerKey = 'consumerKey1'; // TODO: move to config
+    const consumerSecret = 'consumerKeySecret1'; // TODO: move to config
+    const databaseName = 'procedures'; // TODO: should be dynamic per user
     const localDB = getLocalDatabase();
-    const remoteDB = getRemoteDatabase(userToken);
+    const remoteDB = getRemoteDatabase({consumerKey, consumerSecret, token, secret, databaseName});
 
     dispatch(cancelSync());
 
-    databaseSync = localDB.sync(remoteDB, {
-      live: true,
-      retry: true
+    // databaseSync = localDB.sync(remoteDB, {
+    //   live: true,
+    //   retry: true
+    // });
+    //
+    // console.log('start sync');
+    //
+    // databaseSync.on('change', function (info) {
+    //   // handle change
+    //   console.log('change', info);
+    //   dispatch(setSyncState(SYNC_CHANGE));
+    // }).on('paused', function (err) {
+    //   // replication paused (e.g. replication up to date, user went offline)
+    //   console.log('pause', err);
+    //   dispatch(setSyncState(SYNC_PAUSED));
+    // }).on('active', function (info) {
+    //   // replicate resumed (e.g. new changes replicating, user went back online)
+    //   console.log('active', info);
+    //   dispatch(setSyncState(SYNC_ACTIVE));
+    // }).on('denied', function (err) {
+    //   // a document failed to replicate (e.g. due to permissions)
+    //   console.log('denied', err);
+    //   dispatch(setSyncState(SYNC_DENIED));
+    // }).on('complete', function (info) {
+    //   // handle complete
+    //   console.log('complete', info);
+    //   dispatch(setSyncState(SYNC_COMPLETE));
+    // }).on('error', function (err) {
+    //   // handle error
+    //   console.log('error', err);
+    //   console.warn(JSON.stringify(err));
+    //   dispatch(setSyncState(SYNC_ERROR));
+    // });
+
+    localDB.info().then(function (result) {
+      console.log('local db info:', result);
+    }).catch(function (err) {
+      console.log(err);
     });
 
-    databaseSync.on('change', function (info) {
-      // handle change
-      dispatch(setSyncState(SYNC_CHANGE));
-    }).on('paused', function (err) {
-      // replication paused (e.g. replication up to date, user went offline)
-      dispatch(setSyncState(SYNC_PAUSED));
-    }).on('active', function () {
-      // replicate resumed (e.g. new changes replicating, user went back online)
-      dispatch(setSyncState(SYNC_ACTIVE));
-    }).on('denied', function (err) {
-      // a document failed to replicate (e.g. due to permissions)
-      dispatch(setSyncState(SYNC_DENIED));
-    }).on('complete', function (info) {
-      // handle complete
-      dispatch(setSyncState(SYNC_COMPLETE));
-    }).on('error', function (err) {
-      // handle error
-      console.warn(JSON.stringify(err));
-      dispatch(setSyncState(SYNC_ERROR));
+    remoteDB.info().then(function (result) {
+      console.log('remote db info:', result);
+    }).catch(function (err) {
+      console.log(err);
+    });
+
+    remoteDB.allDocs({
+      include_docs: true,
+      attachments: true
+    }).then(function (result) {
+      console.log(result);
+    }).catch(function (err) {
+      console.log(err);
     });
   }
 }

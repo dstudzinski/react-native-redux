@@ -10,15 +10,14 @@ const LoginView = props => {
     <Container>
       <Content>
         <SyncStatus/>
-        { props.userToken ?
-          undefined : <LoginForm/> }
+        <LoginForm/>
       </Content>
     </Container>
   );
 };
 
 PropTypes.propTypes = {
-  userToken: PropTypes.string
+  user: PropTypes.string
 };
 
 // container
@@ -26,7 +25,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    userToken: state.database.user.token
+    user: state.database.user
   }
 };
 

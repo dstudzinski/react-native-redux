@@ -6,7 +6,7 @@ const SyncStatus = props => {
     <View>
       <Text>Sync status: {props.syncState}</Text>
       <Text>Login status: {props.loginState}</Text>
-      <Text>User token: {props.userToken}</Text>
+      <Text>User: {JSON.stringify(props.user, null ,2)}</Text>
     </View>
   )
 };
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
   return {
     syncState: state.database.syncState,
     loginState: state.database.loginState,
-    userToken: state.database.user.token,
+    user: state.database.user,
   }
 };
 
