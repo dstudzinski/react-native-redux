@@ -30,61 +30,57 @@ let remoteDB;
 let databaseSync;
 
 const remoteDBUrl = 'http://192.168.0.14:5984'; //TODO: move to config
-const ApiUrl = 'http://192.168.0.14:5050'; //TODO: move to config
 
 export function getLocalDatabase() {
+  if(localDB) {
+    return localDB;
+  }
+
   // new PouchDB('procedures').destroy();
   localDB = new PouchDB('procedures');
   return localDB;
 }
 
-export function getRemoteDatabase(parameters) {
-  const {consumerKey, consumerSecret, token, secret, databaseName} = parameters;
-  const databaseUrl = remoteDBUrl + '/' + databaseName; //TODO: database name should be dynamic
-
-  console.log('database url:', databaseUrl);
-  // TODO: generate Authorization header with OAuth data
+export function getRemoteDatabase(username, password, databaseName) {
+  const databaseUrl = remoteDBUrl + '/' + databaseName;
   const options = {
     skipSetup: true,
-    ajax: {
-      headers: {
-        // 'Authorization': 'OAuth oauth_consumer_key="consumerKey1",oauth_token="a9df264e-8445-43fe-bf66-87150caab1ba",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1481653127",oauth_nonce="vnQ9HE",oauth_version="1.0",oauth_signature="OBkuJfREIaPLMN6VXIkLFkkyKRA%3D"'
-        'Authorization': 'Basic YmVhdGE6YmVhdGE='
-      }
+    auth: {
+      username,
+      password
     }
   };
   remoteDB = new PouchDB(databaseUrl, options);
+
+  console.warn('remote');
+  remoteDB.info().then(suc => {
+    console.warn(JSON.stringify(suc));
+  })
+    .catch(err => {
+      console.warn(JSON.stringify(err));
+    })
+
   return remoteDB;
 }
 
-export function setupRemoteDatabaseConnection(name, password) {
+export function setupRemoteDatabaseConnection(username, password) {
   return dispatch => {
-    return dispatch(loginToDatabase(name, password))
+    console.warn('setup');
+    return dispatch(loginToDatabase(username, password))
       .then(function() {
         dispatch(setSync());
       });
   }
 }
 
-export function loginToDatabase(name, password) {
+export function loginToDatabase(username, password) {
   return dispatch => {
-    return fetch(ApiUrl + '/login', {
-      method : 'POST',
-      headers : {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + window.btoa(name + ':' + password)
-      }
-    }).then(response => response.json())
-      .then(data => {
-      const token = data.token;
-      const secret = data.secret;
-      dispatch(setUser({name, password, token, secret}));
+    console.warn('login');
+    return new Promise((res, rej) => {
+      dispatch(setUser({username, password}));
       dispatch(setLoginState(USER_LOGGED_IN));
-      return data;
-    }).catch(err => {
-      dispatch(setLoginState(USER_LOGGING_FAILED));
-      return err;
-    });
+      res();
+    })
   }
 }
 
@@ -108,69 +104,43 @@ export function logoutFromDatabase() {
 
 export function setSync() {
   return (dispatch, getState) => {
-    const token = getState().database.user.token;
-    const secret = getState().database.user.secret;
-    const consumerKey = 'consumerKey1'; // TODO: move to config
-    const consumerSecret = 'consumerKeySecret1'; // TODO: move to config
-    const databaseName = 'procedures'; // TODO: should be dynamic per user
+    console.warn('sync');
+    const {username, password} = getState().database.user;
     const localDB = getLocalDatabase();
-    const remoteDB = getRemoteDatabase({consumerKey, consumerSecret, token, secret, databaseName});
+    const remoteDB = getRemoteDatabase(username, password, username);
 
     dispatch(cancelSync());
 
-    // databaseSync = localDB.sync(remoteDB, {
-    //   live: true,
-    //   retry: true
-    // });
-    //
-    // console.log('start sync');
-    //
-    // databaseSync.on('change', function (info) {
-    //   // handle change
-    //   console.log('change', info);
-    //   dispatch(setSyncState(SYNC_CHANGE));
-    // }).on('paused', function (err) {
-    //   // replication paused (e.g. replication up to date, user went offline)
-    //   console.log('pause', err);
-    //   dispatch(setSyncState(SYNC_PAUSED));
-    // }).on('active', function (info) {
-    //   // replicate resumed (e.g. new changes replicating, user went back online)
-    //   console.log('active', info);
-    //   dispatch(setSyncState(SYNC_ACTIVE));
-    // }).on('denied', function (err) {
-    //   // a document failed to replicate (e.g. due to permissions)
-    //   console.log('denied', err);
-    //   dispatch(setSyncState(SYNC_DENIED));
-    // }).on('complete', function (info) {
-    //   // handle complete
-    //   console.log('complete', info);
-    //   dispatch(setSyncState(SYNC_COMPLETE));
-    // }).on('error', function (err) {
-    //   // handle error
-    //   console.log('error', err);
-    //   console.warn(JSON.stringify(err));
-    //   dispatch(setSyncState(SYNC_ERROR));
-    // });
-
-    localDB.info().then(function (result) {
-      console.log('local db info:', result);
-    }).catch(function (err) {
-      console.log(err);
+    databaseSync = localDB.sync(remoteDB, {
+      live: true,
+      retry: true
     });
 
-    remoteDB.info().then(function (result) {
-      console.log('remote db info:', result);
-    }).catch(function (err) {
-      console.log(err);
-    });
-
-    remoteDB.allDocs({
-      include_docs: true,
-      attachments: true
-    }).then(function (result) {
-      console.log(result);
-    }).catch(function (err) {
-      console.log(err);
+    databaseSync.on('change', function (info) {
+      // handle change
+      console.log('change', info);
+      dispatch(setSyncState(SYNC_CHANGE));
+    }).on('paused', function (err) {
+      // replication paused (e.g. replication up to date, user went offline)
+      console.log('pause', err);
+      dispatch(setSyncState(SYNC_PAUSED));
+    }).on('active', function (info) {
+      // replicate resumed (e.g. new changes replicating, user went back online)
+      console.log('active', info);
+      dispatch(setSyncState(SYNC_ACTIVE));
+    }).on('denied', function (err) {
+      // a document failed to replicate (e.g. due to permissions)
+      console.log('denied', err);
+      dispatch(setSyncState(SYNC_DENIED));
+    }).on('complete', function (info) {
+      // handle complete
+      console.log('complete', info);
+      dispatch(setSyncState(SYNC_COMPLETE));
+    }).on('error', function (err) {
+      // handle error
+      console.log('error', err);
+      console.warn(JSON.stringify(err));
+      dispatch(setSyncState(SYNC_ERROR));
     });
   }
 }
