@@ -19,12 +19,15 @@ export default async function configureStore() {
     db: localDB,
     actions: {
       remove: doc => {
+        // console.warn('remove', JSON.stringify(doc));
         return removeProcedure(doc._id)
       },
       insert: doc => {
+        // console.warn('insert', JSON.stringify(doc));
         return addProcedure(doc)
       },
       update: doc => {
+        // console.warn('update', JSON.stringify(doc));
         return updateProcedure(doc)
       },
     }

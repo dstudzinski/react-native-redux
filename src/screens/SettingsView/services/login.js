@@ -1,6 +1,6 @@
 import I18n from 'react-native-i18n';
 
-import {setupRemoteDatabaseConnection} from '../../../services/database';
+import {setupRemoteDatabaseConnection, cancelRemoteDatabaseConnection} from '../../../services/database';
 
 export const loginValidation = (values, props) => {
   const errors = {};
@@ -27,5 +27,17 @@ export const submitLogin = (values, dispatch, props) => {
     .catch(err => {
       // show message that login unsuccessful
       // do not clear form
+    })
+};
+
+export const submitLogout = (values, dispatch, props) => {
+  const {reset} = props;
+
+  dispatch(cancelRemoteDatabaseConnection())
+    .then(result => {
+      reset();
+    })
+    .catch(err => {
+      // nothing
     })
 };

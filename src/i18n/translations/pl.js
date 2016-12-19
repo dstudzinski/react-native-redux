@@ -33,6 +33,7 @@ const pl = {
     proceduresListView: 'Lista procedur'
   },
   login: 'Login',
+  logout: 'Logout',
   password: 'Hasło'
 };
 

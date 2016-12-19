@@ -29,24 +29,24 @@ export class App extends Component {
     super(props);
   }
 
-  componentWillUpdate(nextProps) {
-    const {user: {username, password}, setupRemoteDatabaseConnection} = this.props;
-    const {user: {username: newUsername, password: newPassword}, loginState: newLoginState} = nextProps;
+  // componentDidMount() {
+  //   const {user: {username, password}, loginState, setSync} = this.props;
+  //   if(loginState === USER_LOGGED_IN && username && password) {
+  //     setSync();
+  //   }
+  // }
 
-    if(newLoginState === USER_LOGGED_IN && newUsername && newUsername !== username && newPassword && newPassword !== password) {
-      setupRemoteDatabaseConnection(newUsername, newPassword);
-    }
-  }
+  // componentWillUpdate(nextProps) {
+  //   const {user: {username, password}, setupRemoteDatabaseConnection} = this.props;
+  //   const {user: {username: newUsername, password: newPassword}, loginState: newLoginState} = nextProps;
+  //
+  //   if(newLoginState === USER_LOGGED_IN && newUsername && newUsername !== username && newPassword && newPassword !== password) {
+  //     setupRemoteDatabaseConnection(newUsername, newPassword);
+  //   }
+  // }
 
   backAction() {
     this.props.popState(); //TODO: pass valid value
-  }
-
-  componentDidMount() {
-    const {user: {username, password}, loginState, setSync} = this.props;
-    if(loginState === USER_LOGGED_IN && username && password) {
-      setSync();
-    }
   }
 
   render() {

@@ -1,4 +1,5 @@
 import {
+  CLEAR_USER,
   SET_SYNC_STATE,
   SET_LOGIN_STATE,
   SET_USER
@@ -17,6 +18,10 @@ const defaultState = {
 import {handleActions} from 'redux-actions';
 
 const navigationStateReducer = handleActions({
+  [CLEAR_USER]: (state, action) => {
+    return Object.assign({}, state, {user: {}});
+  },
+
   [SET_SYNC_STATE]: (state, action) => {
     return Object.assign({}, state, {syncState: action.payload});
   },
@@ -27,7 +32,7 @@ const navigationStateReducer = handleActions({
 
   [SET_USER]: (state, action) => {
     return Object.assign({}, state, {user: {...state.user, ...action.payload}});
-  },
+  }
 }, defaultState);
 
 export default navigationStateReducer;
