@@ -6,13 +6,15 @@ const SyncStatus = props => {
     <View>
       <Text>Sync status: {props.syncState}</Text>
       <Text>Login status: {props.loginState}</Text>
-      <Text>User: {JSON.stringify(props.user, null ,2)}</Text>
+      <Text>User: {props.username}</Text>
     </View>
   )
 };
 
 PropTypes.propTypes = {
-  syncState: PropTypes.string
+  syncState: PropTypes.string,
+  loginState: PropTypes.string,
+  username: PropTypes.string
 };
 
 // container
@@ -22,7 +24,7 @@ const mapStateToProps = state => {
   return {
     syncState: state.databaseSync.syncState,
     loginState: state.user.loginState,
-    user: state.user.user,
+    username: state.user.username,
   }
 };
 

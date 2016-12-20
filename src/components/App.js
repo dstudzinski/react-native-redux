@@ -30,7 +30,7 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    const {user: {username, password}, loginState, setSync} = this.props;
+    const {username, password, loginState, setSync} = this.props;
     if(loginState === USER_LOGGED_IN && username && password) {
       setTimeout(() => {
         setSync();
@@ -103,7 +103,8 @@ import {setSync} from '../services/database';
 const mapStateToProps = state => {
   return {
     navigationState: state.navigationState,
-    user: state.user.user,
+    username: state.user.username,
+    password: state.user.password,
     loginState: state.user.loginState
   }
 };

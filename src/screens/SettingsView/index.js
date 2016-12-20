@@ -23,7 +23,7 @@ const LoginView = props => {
 };
 
 PropTypes.propTypes = {
-  user: PropTypes.string
+  loginState: PropTypes.string
 };
 
 // container
@@ -31,8 +31,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    loginState: state.user.loginState,
-    user: state.user.user
+    loginState: state.user.loginState
   }
 };
 

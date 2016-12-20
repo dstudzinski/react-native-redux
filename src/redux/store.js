@@ -33,8 +33,7 @@ export default async function configureStore() {
     }
   });
 
-  // let initialState = await getStoredState({storage: AsyncStorage});
-  let initialState = {};
+  let initialState = await getStoredState({storage: AsyncStorage});
   const composeEnhancers = composeWithDevTools({ realtime: true});
   const store = createStore(rootReducer, initialState, composeEnhancers(
     // autoRehydrate(),

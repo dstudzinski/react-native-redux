@@ -6,9 +6,9 @@ import {
   setSyncState
 } from '../redux/data/databaseSync/actions';
 import {
-  clearUser,
+  clearUserLoginData,
   setLoginState,
-  setUser
+  setUserLoginData
 } from '../redux/data/user/actions';
 import {
   USER_LOGGED_IN,
@@ -67,13 +67,9 @@ export function setupRemoteDatabaseConnection(username, password) {
     return checkRemoteDBLogin(username, password)
       .then(() => {
         dispatch(storeLoginData(username, password));
-        console.warn('stored');
         dispatch(setLoginState(USER_LOGGED_IN));
-        console.warn('login state');
         dispatch(cancelSync());
-        console.warn('cancel sync');
         dispatch(setSync());
-        console.warn('sync');
       })
       .catch(err => {
         dispatch(setLoginState(USER_LOGGING_FAILED));
@@ -105,13 +101,13 @@ export function checkRemoteDBLogin(username, password) {
 
 export function storeLoginData(username, password) {
   return dispatch => {
-    dispatch(setUser({username, password}));
+    dispatch(setUserLoginData({username, password}));
   }
 }
 
 export function clearLoginData() {
   return dispatch => {
-    dispatch(clearUser());
+    dispatch(clearUserLoginData());
   }
 }
 
@@ -131,7 +127,7 @@ export function setSync() {
       return;
     }
 
-    const {username, password} = getState().user.user;
+    const {username, password} = getState().user;
     const localDB = getLocalDatabase();
     const remoteDB = getRemoteDatabase(username, password, username);
 

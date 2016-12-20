@@ -1,11 +1,11 @@
 import {createAction} from 'redux-actions';
 
 import {
-  CLEAR_USER,
+  CLEAR_USER_LOGIN_DATA,
   SET_LOGIN_STATE,
-  SET_USER
+  SET_USER_LOGIN_DATA
 } from '../../actionsTypes';
 
-export const clearUser = createAction(CLEAR_USER);
+export const clearUserLoginData = createAction(CLEAR_USER_LOGIN_DATA);
 export const setLoginState = createAction(SET_LOGIN_STATE);
-export const setUser = createAction(SET_USER);
+export const setUserLoginData = createAction(SET_USER_LOGIN_DATA);

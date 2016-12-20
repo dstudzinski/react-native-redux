@@ -12,6 +12,6 @@ export const SIDEBAR_STATE = 'SIDEBAR_STATE';
 export const SET_SYNC_STATE = 'SYNC_STATE';
 
 // user
-export const CLEAR_USER = 'CLEAR_USER';
+export const CLEAR_USER_LOGIN_DATA = 'CLEAR_USER_LOGIN_DATA';
 export const SET_LOGIN_STATE = 'LOGIN_STATE';
-export const SET_USER = 'SET_USER';
+export const SET_USER_LOGIN_DATA = 'SET_USER_LOGIN_DATA';
