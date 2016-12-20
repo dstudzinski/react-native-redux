@@ -8,6 +8,6 @@ const routes = {
   proceduresListView: {key: 'proceduresListView', title: 'routes.proceduresListView', component: ProceduresListView}
 };
 
-export const defaultRoute = routes.settingsView;
+export const defaultRoute = routes.newProcedureView;
 
 export default routes;
