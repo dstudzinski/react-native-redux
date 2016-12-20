@@ -28,7 +28,7 @@ export const LoginForm = props => {
           <Field name="login" placeholder={I18n.t('login')} component={Input}/>
         </ListItem>
         <ListItem>
-          <Field name="password" placeholder={I18n.t('password')} component={Input}/>
+          <Field name="password" placeholder={I18n.t('password')} component={Input} secureTextEntry={true}/>
         </ListItem>
       </List>
       <Button block style={styles.loginButton} onPress={handleSubmit}>{I18n.t('login')}</Button>
