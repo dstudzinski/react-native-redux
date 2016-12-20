@@ -103,8 +103,8 @@ import {setSync} from '../services/database';
 const mapStateToProps = state => {
   return {
     navigationState: state.navigationState,
-    user: state.database.user,
-    loginState: state.database.loginState
+    user: state.user.user,
+    loginState: state.user.loginState
   }
 };
 

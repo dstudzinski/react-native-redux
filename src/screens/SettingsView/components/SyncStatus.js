@@ -20,9 +20,9 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    syncState: state.database.syncState,
-    loginState: state.database.loginState,
-    user: state.database.user,
+    syncState: state.databaseSync.syncState,
+    loginState: state.user.loginState,
+    user: state.user.user,
   }
 };
 

@@ -3,11 +3,13 @@ PouchDB.debug.enable('pouchdb:http');
 PouchDB.debug.enable('pouchdb:api');
 
 import {
+  setSyncState
+} from '../redux/data/databaseSync/actions';
+import {
   clearUser,
-  setSyncState,
   setLoginState,
   setUser
-} from '../redux/data/database/actions';
+} from '../redux/data/user/actions';
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
@@ -65,9 +67,13 @@ export function setupRemoteDatabaseConnection(username, password) {
     return checkRemoteDBLogin(username, password)
       .then(() => {
         dispatch(storeLoginData(username, password));
+        console.warn('stored');
         dispatch(setLoginState(USER_LOGGED_IN));
+        console.warn('login state');
         dispatch(cancelSync());
+        console.warn('cancel sync');
         dispatch(setSync());
+        console.warn('sync');
       })
       .catch(err => {
         dispatch(setLoginState(USER_LOGGING_FAILED));
@@ -125,7 +131,7 @@ export function setSync() {
       return;
     }
 
-    const {username, password} = getState().database.user;
+    const {username, password} = getState().user.user;
     const localDB = getLocalDatabase();
     const remoteDB = getRemoteDatabase(username, password, username);
 

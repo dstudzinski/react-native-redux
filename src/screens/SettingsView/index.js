@@ -31,8 +31,8 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
   return {
-    loginState: state.database.loginState,
-    user: state.database.user
+    loginState: state.user.loginState,
+    user: state.user.user
   }
 };
 

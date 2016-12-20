@@ -33,14 +33,15 @@ export default async function configureStore() {
     }
   });
 
-  let initialState = await getStoredState({storage: AsyncStorage});
+  // let initialState = await getStoredState({storage: AsyncStorage});
+  let initialState = {};
   const composeEnhancers = composeWithDevTools({ realtime: true});
   const store = createStore(rootReducer, initialState, composeEnhancers(
     // autoRehydrate(),
     applyMiddleware(thunk, pouchMiddleware)
   ));
 
-  persistStore(store,{storage: AsyncStorage, whitelist: ['database']});
+  persistStore(store,{storage: AsyncStorage, whitelist: ['user']});
 
   return store;
 }
