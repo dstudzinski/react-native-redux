@@ -1,5 +1,6 @@
 import PouchDB from 'pouchdb-react-native';
-// PouchDB.debug.enable('*');
+PouchDB.debug.enable('pouchdb:http');
+PouchDB.debug.enable('pouchdb:api');
 
 import {
   clearUser,
@@ -120,6 +121,10 @@ export function cancelRemoteDatabaseConnection() {
 
 export function setSync() {
   return (dispatch, getState) => {
+    if(databaseSync) {
+      return;
+    }
+
     const {username, password} = getState().database.user;
     const localDB = getLocalDatabase();
     const remoteDB = getRemoteDatabase(username, password, username);
@@ -162,6 +167,7 @@ export function cancelSync() {
   return dispatch => {
     if (databaseSync) {
       databaseSync.cancel();
+      databaseSync = undefined;
       dispatch(setSyncState(SYNC_INACTIVE));
     }
   }

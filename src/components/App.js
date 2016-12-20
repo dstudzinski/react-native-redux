@@ -29,21 +29,14 @@ export class App extends Component {
     super(props);
   }
 
-  // componentDidMount() {
-  //   const {user: {username, password}, loginState, setSync} = this.props;
-  //   if(loginState === USER_LOGGED_IN && username && password) {
-  //     setSync();
-  //   }
-  // }
-
-  // componentWillUpdate(nextProps) {
-  //   const {user: {username, password}, setupRemoteDatabaseConnection} = this.props;
-  //   const {user: {username: newUsername, password: newPassword}, loginState: newLoginState} = nextProps;
-  //
-  //   if(newLoginState === USER_LOGGED_IN && newUsername && newUsername !== username && newPassword && newPassword !== password) {
-  //     setupRemoteDatabaseConnection(newUsername, newPassword);
-  //   }
-  // }
+  componentDidMount() {
+    const {user: {username, password}, loginState, setSync} = this.props;
+    if(loginState === USER_LOGGED_IN && username && password) {
+      setTimeout(() => {
+        setSync();
+      }, 0); // I know what it does but I don't know why it's needed here to make 2 way sync working
+    }
+  }
 
   backAction() {
     this.props.popState(); //TODO: pass valid value
