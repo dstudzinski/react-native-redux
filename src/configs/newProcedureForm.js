@@ -3,10 +3,6 @@ import I18n from 'react-native-i18n';
 const getConfig = () => {
   const asaPickerItems = [
     {
-      label: I18n.t('asa.label'),
-      value: ''
-    },
-    {
       label: I18n.t('asa.1'),
       value: 1
     },
@@ -32,11 +28,18 @@ const getConfig = () => {
     }
   ];
 
-  const typeOfAnesthesia = [
+  const ageUnitPickerItems = [
     {
-      label: I18n.t('typeOfAnesthesia.label'),
-      value: ''
+      label: I18n.t('years'),
+      value: 1
     },
+    {
+      label: I18n.t('months'),
+      value: 2
+    }
+  ];
+
+  const typeOfAnesthesia = [
     {
       label: I18n.t('typeOfAnesthesia.1'),
       value: 1
@@ -61,10 +64,6 @@ const getConfig = () => {
 
   const typeOfSupervision = [
     {
-      label: I18n.t('typeOfSupervision.label'),
-      value: ''
-    },
-    {
       label: I18n.t('typeOfSupervision.1'),
       value: 1
     },
@@ -76,6 +75,7 @@ const getConfig = () => {
 
   return {
     asaPickerItems,
+    ageUnitPickerItems,
     typeOfAnesthesia,
     typeOfSupervision
   }

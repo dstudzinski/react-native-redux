@@ -22,7 +22,7 @@ const LoginView = props => {
   );
 };
 
-PropTypes.propTypes = {
+LoginView.propTypes = {
   loginState: PropTypes.string
 };
 

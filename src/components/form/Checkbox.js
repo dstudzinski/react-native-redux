@@ -6,16 +6,18 @@ const styles = StyleSheet.create({
   view: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 20,
-    paddingLeft: 2.5,
-    paddingRight: 2.5,
+    height: 30,
+    paddingLeft: 0,
+    paddingRight: 0,
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 5,
+    marginBottom: 25
   },
   text: {
-    paddingLeft: 2.5,
+    paddingLeft: 5,
     fontSize: 15,
-    lineHeight: 24
+    lineHeight: 24,
+    color: 'black'
   }
 });
 
@@ -29,7 +31,7 @@ const Checkbox = props => {
   )
 };
 
-PropTypes.propTypes = {
+Checkbox.propTypes = {
   label: PropTypes.string,
   input: PropTypes.object
 };

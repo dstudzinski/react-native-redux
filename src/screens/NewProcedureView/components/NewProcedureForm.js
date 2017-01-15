@@ -18,7 +18,18 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   list: {
-    marginRight: 15
+    marginRight: 15,
+    marginLeft: 15,
+    marginTop: 15
+  },
+  listRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-end'
+  },
+  age: {
+    width: 150,
+    marginRight: 10,
+    // alignSelf: 'flex-end'
   }
 });
 
@@ -29,29 +40,18 @@ export const NewProcedureForm = props => {
   return (
     <View>
       <List style={styles.list}>
-        <ListItem>
-          <Field name="date" label={I18n.t('date')} component={DatePicker}/>
-        </ListItem>
-        <ListItem>
-          <Field name="age" placeholder={I18n.t('age')} keyboardType="numeric" component={Input}/>
-        </ListItem>
-        <ListItem>
-          <Field name="asa" items={config.asaPickerItems} mode="dropdown" component={Picker}/>
-        </ListItem>
-        <ListItem>
-          <Field name="emergency" label={I18n.t('emergency')} component={Checkbox}/>
-        </ListItem>
-        <ListItem>
-          <Field name="typeOfAnesthesia" items={config.typeOfAnesthesia} mode="dropdown"
-                 component={Picker}/>
-        </ListItem>
-        <ListItem>
-          <Field name="typeOfSupervision" items={config.typeOfSupervision} mode="dropdown"
-                 component={Picker}/>
-        </ListItem>
-        <ListItem>
-          <Field name="typeOfSurgery" placeholder={I18n.t('typeOfSurgery')} component={Input}/>
-        </ListItem>
+        <Field name="date" placeholder={I18n.t('date')} component={DatePicker}/>
+        <Field name="asa" label={I18n.t('asaLabel')} items={config.asaPickerItems} mode="dropdown" component={Picker}/>
+        <View style={styles.listRow}>
+          <Field name="age" style={styles.age} placeholder={I18n.t('age')} keyboardType="numeric" component={Input}/>
+          <Field name="ageUnit" label={I18n.t('ageUnitLabel')} items={config.ageUnitPickerItems} mode="dropdown" component={Picker}/>
+        </View>
+        <Field name="emergency" label={I18n.t('emergency')} component={Checkbox}/>
+        <Field name="typeOfAnesthesia" label={I18n.t('typeOfAnesthesiaLabel')} items={config.typeOfAnesthesia} mode="dropdown"
+               component={Picker}/>
+        <Field name="typeOfSupervision" label={I18n.t('typeOfSupervisionLabel')} items={config.typeOfSupervision} mode="dropdown"
+               component={Picker}/>
+        <Field name="typeOfSurgery" placeholder={I18n.t('typeOfSurgery')} component={Input}/>
       </List>
       <Button block style={styles.addButton} onPress={handleSubmit}>{I18n.t('add')}</Button>
     </View>

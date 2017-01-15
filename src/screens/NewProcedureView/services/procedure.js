@@ -13,20 +13,24 @@ export const newProcedureValidation = (values, props) => {
     errors.age = I18n.t('fieldIsRequired');
   }
 
+  if(!values.ageUnit){
+    errors.ageUnit = I18n.t('fieldIsRequired');
+  }
+
   if(!values.asa){
     errors.asa = I18n.t('fieldIsRequired');
   }
 
   if(!values.typeOfAnesthesia){
-    errors.typeOfAnesthesia = 'Field is required';
+    errors.typeOfAnesthesia = I18n.t('fieldIsRequired');
   }
 
   if(!values.typeOfSupervision){
-    errors.typeOfSupervision = 'Field is required';
+    errors.typeOfSupervision = I18n.t('fieldIsRequired');
   }
 
   if(!values.typeOfSurgery){
-    errors.typeOfSurgery = 'Field is required';
+    errors.typeOfSurgery = I18n.t('fieldIsRequired');
   }
 
   return errors;

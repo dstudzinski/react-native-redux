@@ -3,13 +3,24 @@ import {StyleSheet, DatePickerAndroid, TouchableWithoutFeedback, Text, View} fro
 
 const styles = StyleSheet.create({
   view: {
+    height: 35,
+    marginBottom: 10
+  },
+  wrapper: {
     justifyContent: 'center',
-    height: 20,
-    paddingLeft: 2.5,
-    paddingRight: 2.5
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+    paddingBottom: 3,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   text: {
     fontSize: 15
+  },
+  error: {
+    fontSize: 12,
+    height: 20
   }
 });
 
@@ -35,27 +46,27 @@ class DatePicker extends Component {
   };
 
   render() {
-    const {input: {value}, label, meta: {touched, error}} = this.props;
+    const {input: {value}, placeholder, meta: {touched, error}} = this.props;
     const currentValue = value ? value : undefined;
 
     return (
-      <View>
+      <View style={styles.view}>
         <TouchableWithoutFeedback
           ref={c => this.picker = c}
           onPress={() => this.showPicker(this.picker, {date: currentValue})}
         >
-          <View style={styles.view}>
-            <Text style={styles.text}>{value && value.toLocaleDateString() || label}</Text>
+          <View style={styles.wrapper}>
+            <Text style={styles.text}>{value && value.toLocaleDateString() || placeholder}</Text>
           </View>
         </TouchableWithoutFeedback>
-        {touched && (error && <Text>{error}</Text>)}
+        {touched && (error && <Text style={styles.error}>{error}</Text>)}
       </View>
     )
   }
 }
 
-PropTypes.propTypes = {
-  label: PropTypes.string,
+DatePicker.propTypes = {
+  placeholder: PropTypes.string,
   input: PropTypes.object
 };
 

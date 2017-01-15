@@ -19,7 +19,7 @@ const SyncStatus = props => {
   )
 };
 
-PropTypes.propTypes = {
+SyncStatus.propTypes = {
   syncState: PropTypes.string,
   loginState: PropTypes.string,
   username: PropTypes.string

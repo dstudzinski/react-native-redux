@@ -2,7 +2,6 @@ const pl = {
   add: 'Dodaj',
   age: 'Wiek',
   asa: {
-    label: 'ASA',
     1: '1',
     2: '2',
     3: '3',
@@ -10,22 +9,23 @@ const pl = {
     5: '5',
     6: '6'
   },
+  asaLabel: 'ASA',
   date: 'Data',
   emergency: 'Pilne',
   fieldIsRequired: 'Pole wymagane',
   typeOfAnesthesia: {
-    label: 'Typ znieczulenia',
     1: 'og',
     2: 'zo',
     3: 'pp',
     4: 'bn',
     5: 'miejscowe'
   },
+  typeOfAnesthesiaLabel: 'Typ znieczulenia',
   typeOfSupervision: {
-    label: 'Typ nadzoru',
     1: 'sam.',
     2: 'współ.'
   },
+  typeOfSupervisionLabel: 'Typ nadzoru',
   typeOfSurgery: 'Typ zabiegu',
   routes: {
     settingsView: 'Ustawienia',
@@ -34,7 +34,10 @@ const pl = {
   },
   login: 'Login',
   logout: 'Logout',
-  password: 'Hasło'
+  password: 'Hasło',
+  years: 'Lata',
+  months: 'Miesiące',
+  ageUnitLabel: 'Jednostka wieku'
 };
 
 export default pl;

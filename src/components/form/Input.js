@@ -4,12 +4,22 @@ import {Input as NativeInput} from 'native-base';
 
 const styles = StyleSheet.create({
   view: {
+    marginBottom: 10,
+    height: 46
+  },
+  input: {
     justifyContent: 'center',
-    height: 20,
-    paddingLeft: 2.5,
-    paddingRight: 2.5,
+    paddingLeft: 0,
+    paddingRight: 0,
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    height: 27,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  error: {
+    fontSize: 12,
+    height: 20
   }
 });
 
@@ -38,21 +48,26 @@ class Input extends Component {
   render() {
     const {input: {onChange}, meta: {touched, error}} = this.props;
 
+    const customProps = Object.assign({}, this.props);
+    delete customProps.style;
+
     return (
-      <View>
+      <View style={[styles.view, this.props.style]}>
         <NativeInput
-          style={styles.view}
+          style={styles.input}
           ref={r => this.nativeInput = r}
           onSubmitEditing={this.onSubmit}
           onChangeText={text => onChange(text)}
-          {...this.props}/>
-        {touched && (error && <Text>{error}</Text>)}
+          placeholder="test"
+          {...customProps}
+          />
+        {touched && (error && <Text style={styles.error}>{error}</Text>)}
       </View>
     )
   }
 }
 
-PropTypes.propTypes = {
+Input.propTypes = {
   input: PropTypes.object
 };
 
