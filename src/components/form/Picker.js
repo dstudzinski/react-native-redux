@@ -42,12 +42,12 @@ class Picker extends Component {
       });
   };
 
-  componentDidMount() {
-    const {input: {onChange}, items} = this.props;
-
-    // set first value
-    onChange(items[0].value);
-  }
+  // componentDidMount() {
+  //   const {input: {onChange}, items} = this.props;
+  //
+  //   // set first value
+  //   onChange(items[0].value);
+  // }
 
   render() {
     const {input: {onChange, value}, items, meta: {touched, error}, label} = this.props;

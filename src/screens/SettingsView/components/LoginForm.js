@@ -8,13 +8,16 @@ import I18n from 'react-native-i18n';
 import Input from '../../../components/form/Input';
 
 const styles = StyleSheet.create({
+  view: {
+    paddingLeft: 15
+  },
   loginButton: {
     marginTop: 50,
-    marginLeft: 15,
     marginRight: 15
   },
   list: {
-    marginRight: 15
+    marginRight: 15,
+    marginTop: 30
   }
 });
 
@@ -22,14 +25,11 @@ export const LoginForm = props => {
   const {handleSubmit} = props;
 
   return (
-    <View>
+    <View style={styles.view}>
       <List style={styles.list}>
-        <ListItem>
-          <Field name="login" placeholder={I18n.t('login')} component={Input}/>
-        </ListItem>
-        <ListItem>
-          <Field name="password" placeholder={I18n.t('password')} component={Input} secureTextEntry={true}/>
-        </ListItem>
+        <Field name="server" placeholder={I18n.t('server')} component={Input}/>
+        <Field name="login" placeholder={I18n.t('login')} component={Input}/>
+        <Field name="password" placeholder={I18n.t('password')} component={Input} secureTextEntry={true}/>
       </List>
       <Button block style={styles.loginButton} onPress={handleSubmit}>{I18n.t('login')}</Button>
     </View>

@@ -37,7 +37,8 @@ const pl = {
   password: 'Hasło',
   years: 'Lata',
   months: 'Miesiące',
-  ageUnitLabel: 'Jednostka wieku'
+  ageUnitLabel: 'Jednostka wieku',
+  server: 'Server'
 };
 
 export default pl;

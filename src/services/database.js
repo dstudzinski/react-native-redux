@@ -30,8 +30,6 @@ let localDB;
 let remoteDB;
 let databaseSync;
 
-const remoteDBUrl = 'http://192.168.0.14:5984'; //TODO: move to config
-
 export function getLocalDatabase() {
   if (localDB) {
     return localDB;
@@ -42,12 +40,12 @@ export function getLocalDatabase() {
   return localDB;
 }
 
-export function getRemoteDatabase(username, password, databaseName) {
+export function getRemoteDatabase(username, password, databaseName, server) {
   if (remoteDB) {
     return remoteDB;
   }
 
-  const databaseUrl = remoteDBUrl + '/' + databaseName;
+  const databaseUrl = server + '/' + databaseName;
   const options = {
     skipSetup: true,
     auth: {
@@ -60,13 +58,13 @@ export function getRemoteDatabase(username, password, databaseName) {
   return remoteDB;
 }
 
-export function setupRemoteDatabaseConnection(username, password) {
+export function setupRemoteDatabaseConnection(username, password, server) {
   return dispatch => {
     dispatch(setLoginState(USER_LOGGING_IN));
 
-    return checkRemoteDBLogin(username, password)
+    return checkRemoteDBLogin(username, password, server)
       .then(() => {
-        dispatch(storeLoginData(username, password));
+        dispatch(storeLoginData(username, password, server));
         dispatch(setLoginState(USER_LOGGED_IN));
         dispatch(cancelSync());
         dispatch(setSync());
@@ -78,8 +76,8 @@ export function setupRemoteDatabaseConnection(username, password) {
   }
 }
 
-export function checkRemoteDBLogin(username, password) {
-  const sessionUrl = remoteDBUrl + '/_session';
+export function checkRemoteDBLogin(username, password, server) {
+  const sessionUrl = server + '/_session';
 
   return fetch(sessionUrl, {
     headers: {
@@ -99,9 +97,9 @@ export function checkRemoteDBLogin(username, password) {
     });
 }
 
-export function storeLoginData(username, password) {
+export function storeLoginData(username, password, server) {
   return dispatch => {
-    dispatch(setUserLoginData({username, password}));
+    dispatch(setUserLoginData({username, password, server}));
   }
 }
 
@@ -127,9 +125,9 @@ export function setSync() {
       return;
     }
 
-    const {username, password} = getState().user;
+    const {username, password, server} = getState().user;
     const localDB = getLocalDatabase();
-    const remoteDB = getRemoteDatabase(username, password, username);
+    const remoteDB = getRemoteDatabase(username, password, username, server);
 
     databaseSync = localDB.sync(remoteDB, {
       live: true,

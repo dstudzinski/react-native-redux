@@ -62,8 +62,15 @@ export const NewProcedureForm = props => {
 import {reduxForm} from 'redux-form';
 import {newProcedureValidation, submitNewProcedure} from '../services/procedure';
 
+const config = getConfig();
 export default reduxForm({
   form: 'NewProcedureForm',
   validate: newProcedureValidation,
-  onSubmit: submitNewProcedure
+  onSubmit: submitNewProcedure,
+  initialValues: {
+    asa: config.asaPickerItems[0].value,
+    ageUnit: config.ageUnitPickerItems[0].value,
+    typeOfAnesthesia: config.typeOfAnesthesia[0].value,
+    typeOfSupervision: config.typeOfSupervision[0].value
+  }
 })(NewProcedureForm);

@@ -19,7 +19,7 @@ export const loginValidation = (values, props) => {
 export const submitLogin = (values, dispatch, props) => {
   const {reset} = props;
 
-  dispatch(setupRemoteDatabaseConnection(values.login, values.password))
+  dispatch(setupRemoteDatabaseConnection(values.login, values.password, values.server))
     .then(result => {
       // set that user is logged in
       reset();

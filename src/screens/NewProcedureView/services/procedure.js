@@ -39,6 +39,12 @@ export const newProcedureValidation = (values, props) => {
 export const submitNewProcedure = (values, dispatch, props) => {
   const {reset} = props;
 
+  values.age = Number(values.age);
+  if (values.ageUnit === 1) {
+    values.age = values.age * 12;
+  }
+
   dispatch(addProcedure(values));
   reset();
+  //after reset should reset to default values but dropdowns are empty...
 };
