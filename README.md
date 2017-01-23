@@ -1,3 +1,13 @@
+# About
+It's just a playground. It's my first RN app where I test different ideas.  
+As a backend I used pouchdb-server: https://github.com/pouchdb/pouchdb-server  
+  
+Short todo:  
+1. Use react-intl instead of react-native-i18n: https://github.com/yahoo/react-intl/issues/600#issuecomment-268927061
+2. Create own UI components instead of native-base,
+3. Use JWT for Auth insteada of Basic Auth,
+4. Add support for updates eg react-native-auto-updater, CodePush
+
 # Install:
 1. clone  
 2. npm install
