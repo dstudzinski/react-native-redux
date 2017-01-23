@@ -2,7 +2,7 @@
 It's just a playground. It's my first RN app where I test different ideas.  
 As a backend I used pouchdb-server: https://github.com/pouchdb/pouchdb-server  
   
-Short todo:  
+## Short todo:  
 1. Use react-intl instead of react-native-i18n: https://github.com/yahoo/react-intl/issues/600#issuecomment-268927061
 2. Create own UI components instead of native-base,
 3. Use JWT for Auth insteada of Basic Auth,
@@ -23,7 +23,7 @@ For redux debugging open Redux DevTools Extension in Chrome devtools and use shi
 
 # Debug with wifi:
 
-Configure your app to connect to the local dev server via Wi-Fi
+## Configure your app to connect to the local dev server via Wi-Fi
 1. Make sure your laptop and your phone are on the same Wi-Fi network.
 2. Open your React Native app on your device. You can do this the same way you'd open any other app.
 3. You'll see a red screen with an error. This is OK. The following steps will fix that.
